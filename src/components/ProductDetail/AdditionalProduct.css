@@ -1,0 +1,84 @@
+.marquee-text {
+    font-size: 29px;
+    font-weight: 600;
+    margin: 60px 0px;
+    color: #f02d34;
+}
+
+.marquee {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.track {
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 15s linear infinite alternate;
+    width: 180%;
+}
+
+.track:hover {
+    animation-play-state: paused;
+}
+.track2 {
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 15s linear infinite alternate-reverse;
+    width: 180%;
+}
+
+.track2:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+.maylike-products-wrapper {
+    margin-top: 50px;
+}
+
+.maylike-products-wrapper h2 {
+    text-align: center;
+    margin: 50px;
+    color: #324d67;
+    font-size: 28px;
+}
+.maylike-products-wrapper2 h2 {
+    text-align: center;
+    margin: 50px;
+    color: #324d67;
+    font-size: 28px;
+}
+
+.maylike-products-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width:800px) {
+    .track2 {
+        animation: marquee 10s linear infinite alternate-reverse;
+        width: 550%;
+    }
+    .track {
+        animation: marquee 10s linear infinite alternate;
+        width: 550%;
+    }
+
+}

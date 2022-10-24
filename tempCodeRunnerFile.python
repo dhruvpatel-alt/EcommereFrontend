@@ -1,0 +1,60 @@
+import asyncio
+import requests
+from pymongo import MongoClient
+async def fetchapi():
+    CONNECTION_STRING = "mongodb+srv://Jadu_exchanges:Jadu_exchanges@cluster0.6pl7dpb.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(CONNECTION_STRING)
+    DBNAME=client['Exhanges'];
+    collection_name = DBNAME['coins'];
+    url='https://coinranking1.p.rapidapi.com/coins'
+    headers={'X-RapidAPI-Key':'1f8501411emshe6acfb3998b5ebcp1907acjsnec29d1aca0db'}
+    data=requests.get(url,headers=headers).json();
+    data=data['data']['coins']
+    uuid=[];
+    name=[];
+    items=[];
+    rank=[];
+    iconUrl=[];
+    Volume=[];
+    marketCap=[];
+    for data in data:
+        uuid.append(data["uuid"]);
+        name.append(data["name"]);
+        rank.append(str(data["rank"]));
+        iconUrl.append(data["iconUrl"]);
+        Volume.append(data["24hVolume"]);
+        marketCap.append(data["marketCap"]);
+    for i in range(len(uuid)):
+        item={"name":"","rank":"","iconUrl":"","uuid":"","Volume":"","marketCap":"","uid":""};
+        if name[i]:
+            item["name"]+=name[i];
+            item["rank"]+=rank[i];
+            item["uuid"]+=uuid[i];
+            item["Volume"]+=Volume[i];
+            item["iconUrl"]+=iconUrl[i];
+            item["marketCap"]+=marketCap[i];
+        item["uid"]+=str(i);
+        items.append(item);
+
+    for i in range(len(items)):
+        print(str(i))
+        collection_name.insert_one(  {"uid":str(i),
+                    "name":items[i]["name"],
+                    "rank":items[i]["rank"],
+                    "uuid":items[i]["uuid"],
+                    "marketCap":items[i]["marketCap"],
+                    "Volume":items[i]["Volume"],
+                    "iconUrl":items[i]["iconUrl"]
+                    })
+              
+# asyncio.run(fetchapi("sports",'c478932c054e44be96c71cd0a90fd69b'));   
+# asyncio.run(fetchapi("general"));   
+# asyncio.run(fetchapi("business"));   
+# asyncio.run(fetchapi("science"));   
+# asyncio.run(fetchapi("technology"));   
+# asyncio.run(fetchapi("health"));   
+async def runnewsapi():
+    # keepalive();
+    await fetchapi();
+   
+asyncio.run(runnewsapi());
