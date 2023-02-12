@@ -20,6 +20,7 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
         setLoading(true)
         const params=new URLSearchParams(window.location.search)
         const code=params.get("code")
+        console.log('hello from reset')
         axios.post('http://localhost:1337/api/auth/reset-password',{
             code:code,
             password:values.password,

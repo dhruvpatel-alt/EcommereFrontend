@@ -1,0 +1,37 @@
+//Pattern 1 
+  	 	int arr[8]={ 
+  	 	 	0x01,0x02,0x04,0x08,0x010,0x020,0x040,0x080 
+  	 	}; 
+  	 	for(int i=0;i<8;i++){ 
+  	 	 	PORTB = arr[i]; 
+  	 	 	_delay_ms(1000); 
+  	 	} 
+  	 	for(int i=6;i>=0;i--){ 
+  	 	 	PORTB = arr[i]; 
+  	 	 	_delay_ms(1000); 
+  	 	} 	 	 		 	 	 
+//Pattern 2 
+  	  	 	int arr[4] = {0x011,0x022,0x044,0x088}; 
+  	  	 	for(int i=0;i<4;i++){ 
+  	 	 	 	PORTB = arr[i]; 
+  	 	
+  	  	 	 	_delay_ms(500); 
+  	  	 	} 
+  	 	 	for(int i=2;i>=0;i--){ 
+  	 	 	 	PORTB = arr[i]; 
+  	  	 	 	_delay_ms(500); 
+  	  	 	} 	 	
+// Pattern 3 : 
+  	 	int arr[4]={0x018,0x24,0x042,0x081}; 
+  	 	for(int i=0;i<4;i++){ 
+  	 	 	PORTB = arr[i]; 
+  	 	 	_delay_ms(500); 
+  	 	} 
+  	 	for(int i=2;i>=0;i--){ 
+  	 	 	PORTB = arr[i]; 
+  	 	 	_delay_ms(500); 
+  	 	}
+// Pattern 4 
+ 	 	int arr[8]={0x01,0x02,0x04,0x08,0x010,0x020,0x040,0x080}; 	 
+ 	 	PORTB = arr[rand() % ARR_SIZE(arr)]; 
+ 	 	_delay_ms(1000); }  } 

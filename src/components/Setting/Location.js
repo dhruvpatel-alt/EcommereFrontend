@@ -2,18 +2,20 @@ import React,{useState,useEffect,useContext} from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { FeedbackContext } from '../../context/wrappers/FeedbackWrapper';
 import { setSnackbar } from '../../context/actions/feedback-actions';
-import {CircularProgress} from '@mui/material';
+import {CircularProgress,FormControl,FormLabel,Radio,RadioGroup} from '@mui/material';
 import axios from 'axios';
-import {FormControlLabel,Switch,Grid,Chip} from '@mui/material';
-
+import {FormControlLabel,Switch,Grid,Drawer,Chip} from '@mui/material';
 import locationicon from '../../images/location.svg'
 import streetAdornment from '../../images/street-adornment.svg'
 import zipAdornment from '../../images/zip-adornment.svg'
 import Fields from '../auth/Field'
 import Slot from './Slot';
 function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors,setErrors,checkout,billing,setBilling}) {
-    const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
+  const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
+  let places=[]
     const [loading,setLoading]=useState(false);
+    const [drawer,setDrawer]=useState(false);
+    const [place,setPlace]=useState('');
     const {dispatchFeedback}=useContext(FeedbackContext)
     const fields={
         street:{
@@ -30,19 +32,31 @@ function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors
     const getLocation=()=>{
         setLoading(true);
         
-        axios.post('https://get-citydata.herokuapp.com/getcode',{
+        axios.post('http://dhruv1609.pythonanywhere.com/getcode',{
             pincode:values.zip
         },{headers:{
             'Content-Type':'application/json',
             'Accept':'application/json'
           }}).then(response=>{
             setLoading(false);
-            if(response.data.zip==='not found'){
-                dispatchFeedback(setSnackbar({status:'error',message:'City and State corresponding to this zip code was not found ,pls try again!'}))
+            console.log(response.data)
+            if(response.data==='not found'){
+              dispatchFeedback(setSnackbar({status:'error',message:'City and State corresponding to this zip code was not found ,pls try again!'}))
             }else{
-            const {city,state}=response.data
-            // console.log(city,state)
-            setValues({...values,city:city,state:state})}
+              const data=response.data.result
+              console.log(data)
+              if(data.length >1){
+                let item=data
+              setPlace(item)
+              for(var i=0;i<data.length;i++){
+                places.push(data[i])
+              }
+              setDrawer(true)
+            }
+            const city=data[0].District
+            const state=data[0].StateName
+            setValues({...values,city:city,state:state})
+        }
         }).catch(error=>{
             setLoading(false);
             dispatchFeedback(setSnackbar({status:'error',message:'There was problem detecting the city and state'}))
@@ -90,6 +104,31 @@ useEffect(() => {
   color='secondary'/>} labelPlacement='top' label='Billing' />
 </Grid>)}
         </Grid>
+        <Grid >
+        </Grid>
+        <Drawer
+      anchor={'bottom'}
+      open={drawer}
+      onClose={()=>{setDrawer(false)}}
+    >
+            <Grid item container justifyContent='center' alignItems='center' >
+          <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Select the Place you live</FormLabel>
+      <RadioGroup
+      aria-labelledby="demo-controlled-radio-buttons-group"
+      name="controlled-radio-buttons-group"
+      value={place}
+      onChange={(e)=>{setPlace(e.target.value)}}
+      >
+      {places.map(element=>{
+          console.log(element)
+     return   <FormControlLabel value={element[0]} control={<Radio />} label={element[0]} />
+  }
+    )}
+      </RadioGroup>
+    </FormControl>
+            </Grid>
+    </Drawer>
     </Grid>
   )
 }

@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Grid } from '@mui/material'
 import CheckOutNavigation from './CheckOutNavigation'
 import Detail from '../Setting/Detail'
@@ -13,6 +14,9 @@ function CheckoutPortal({user}) {
   const [selectedStep,setSelectedStep]=useState(0)
   const [detailValues,setDetailValues]=useState({name:"",email:"",phone:""})
   const [locationValues,setLocationValues]=useState({street:"",zip:"",city:"",state:""})
+  const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
+  const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
+
   const [detailSlot,setDetailSlot]=useState(0);
   const [locationSlot,setLocationSlot]=useState(0);
   const [errors,setErrors]=useState({})
@@ -42,7 +46,7 @@ function CheckoutPortal({user}) {
     setSelectedShipping={setSelectedShipping} shippingOptions={shippingOptions}/>
   ,error:selectedShipping===null},
     {title:'Payment',component:<Payment user={user} slot={billingSlot} checkout setSlot={setBillingSlot}
-    saveCard={saveCard} setSaveCard={setSaveCard}/>,error:false}
+    saveCard={saveCard} setSaveCard={setSaveCard} isCart={true}/>,error:false}
     ,{title:'Confirmation',component:<Confirmation detailValues={detailValues} locationValues={locationValues}
     selectedShipping={selectedShipping} saveCard={saveCard} shippingOptions={shippingOptions} user={user}
     selectedStep={selectedStep} setSelectedStep={setSelectedStep} setOrder={setOrder}
@@ -55,12 +59,12 @@ useEffect(() => {
 }, [detailSlot,locationSlot])
 
   return (
-   <Grid item container xs={6} direction='column' alignItems='flex-end' style={{height:'35rem'}}>
+   <Grid item container lg={6} direction='column' alignItems={matchesMd?'flex-start':'flex-end'} style={{height:matchesSm?'45rem':'35rem',marginBottom:matchesSm?'-5rem':null}}>
     <CheckOutNavigation steps={steps} selectedStep={selectedStep} detailValues={detailValues} 
     detailSlot={detailSlot} locationValues={locationValues} locationSlot={locationSlot}
     setSelectedStep={setSelectedStep}/>
    <Grid item container xs={6} direction='column' alignItems='center'
-   style={{width:'40rem',height:'25rem',backgroundColor:'#1e90ff'}}>
+    style={{width:matchesMd?'100%':'40rem',height:'25rem',backgroundColor:'#1e90ff'}}>
     {steps[selectedStep].component}
    </Grid>
    {steps[selectedStep].title==='Confirmation'&&<BillingConfirmation 

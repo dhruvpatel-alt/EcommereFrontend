@@ -50,7 +50,7 @@ function Contact()  {
   }
   const handleSubmit = (e) => {
     
-    axios.post('https://mail-send1609.herokuapp.com/mail', {
+    axios.post('https://mail-sender2-c398.onrender.com/mail', {
         email:"message.reciever1609@gmail.com",
         subject:`${values.email} ${values.phone}`,
         message:`<html>${values.message}</html>`

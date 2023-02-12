@@ -1,8 +1,11 @@
 import React from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from 'gatsby'
 import { Button, Grid, Typography } from '@mui/material'
 import  complete from '../../images/order-placed.svg'
 function Thankyou({selectedShipping,order}) {
+    const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
+
     const addToDate=days=>{
         const date=new Date();
         date.setDate(date.getDate()+days)
@@ -27,18 +30,18 @@ function Thankyou({selectedShipping,order}) {
     <img src={complete} alt='order placed'/>
 </Grid>
 <Grid item >
-    <Typography variant='h4'>
+    <Typography variant='h4' alignItems='center'>
         Expected by:{getExpected()}
     </Typography>
-    <Grid item container justifyContent='space-between' alignItems='center' style={{marginTop:'0.5rem'}}>
+    <Grid item container justifyContent={matchesSm?'space-around':'space-between'} alignItems='center' style={{marginTop:'0.5rem'}}>
     <Grid item>
-    <Typography variant='body1' style={{color:'#fff',fontWeight:600}}>
+    <Typography variant='body1' style={{color:'#fff',fontWeight:600,fontSize:matchesSm?'1rem':null}}>
         Order:#{order.id}
     </Typography>
     </Grid>
 <Grid item>
     <Button style={{padding:'0.2rem 0rem',textTransform:'none'}}>
-        <Typography variant='body2'  style={{color:'#fff'}}>
+        <Typography variant='body2'  style={{color:'#fff',fontSize:matchesSm?'1rem':null}}>
             Details {'>'}
         </Typography>
     </Button>
@@ -48,7 +51,8 @@ function Thankyou({selectedShipping,order}) {
 
 <Grid item>
     <Button component={Link} to='/'> 
-        <Typography variant='body2'  style={{color:'#fff',fontWeight:'600',fontSize:'2rem',textTransform:'none'}}>
+        <Typography variant='body2'  style={{color:'#fff',fontWeight:'600',fontSize:matchesSm?'1.5rem':'2rem'
+        ,textTransform:'none'}}>
             Shop {'>'}
         </Typography>
     </Button>

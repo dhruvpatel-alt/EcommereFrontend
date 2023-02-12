@@ -6,7 +6,7 @@ function Slot({slot,setSlot,checkout,noLabel}) {
   const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
 
   return (
-    <Grid item container xs={noLabel?3:checkout?4:undefined}>
+    <Grid item container xs >
     <Grid item>
     {[1,2,3].map((number,i)=>(
       <Button key={number} onClick={()=>setSlot(number-1)}
@@ -20,7 +20,7 @@ function Slot({slot,setSlot,checkout,noLabel}) {
 </Grid>
 {checkout&&(
   <Grid item>
-    <Typography variant='body1' style={{color:'#fff',fontWeight:600,margin:'1rem 0.2rem'}}>
+    <Typography variant='body1' style={{color:'#fff',fontWeight:600,margin:'1rem 0.2rem',fontSize:matchesSm?'1rem':null}}>
       Shipping
     </Typography>
     </Grid>

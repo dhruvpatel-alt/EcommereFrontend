@@ -1,6 +1,6 @@
 import React,{useState,useContext} from 'react'
 import axios from 'axios'
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Feilds from '../Auth/Field'
 import {Chip,CircularProgress, Grid,Typography,Button} from  '@mui/material'
 import confirmationIcon from '../../images/tag.svg'
@@ -18,6 +18,7 @@ import {FeedbackContext} from '../../context/wrappers/FeedbackWrapper'
 
 function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shippingOptions,user,selectedStep,setSelectedStep,setOrder}) {
     const {feedback,dispatchFeedback}=useContext(FeedbackContext)
+    const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
     const {cart,dispatchCart}=useContext(CartContext);
     const [loading,setLoading]=useState(false)
     const fields=[{value:detailValues.name,adornment:(  <div style={{width:22,height:22}} >
@@ -61,10 +62,10 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
          <Grid item xs={2} style={{display:'flex',justifyContent:'center'}}>
                   {adornment}
                 </Grid>
-                <Grid item xs={10} style={{display:'flex',alignItems:'center'}}>
-<Typography variant='body1' style={{color:'#fff'}}>
-    {value}
-</Typography>
+                <Grid item xs={10} style={{display:'flex',alignItems:'center',overflowX:'auto'}} >
+                <Typography variant='body1' style={{color:'#fff',flexWrap:'nowrap'}} >
+                    {value}
+                </Typography>
                 </Grid>
         </>
     )
@@ -134,7 +135,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
                 ))}
         </Grid>
         <Grid item xs={5} style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-<img src={confirmationIcon} alt='confirmation' style={{height:'7rem',width:'7rem'}}/>
+<img src={confirmationIcon} alt='confirmation' style={{height:'7rem',width:'7rem',marginBottom:'1rem'}}/>
         </Grid>
         </Grid>
         {secondFields.map((field,i)=>(
@@ -143,7 +144,8 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
                 <Grid item container xs={7}>
                     {field.promo?(
                         <span style={{marginLeft:'1.25rem'}}>
-                        <Feilds fields={field} values={promo} setValues={setPromo} errors={promoError}
+                        <Feilds fields={field} values={promo} setValues={setPromo} 
+                        errors={promoError}
                         setErrors={setPromoError} isPromo/>
                         </span>
                     ):(
@@ -152,12 +154,12 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
                 </Grid>
                 <Grid item xs={5} style={{display:'flex'}}>
                         <Grid item xs={6}>
-                            <Typography variant='h5' style={{fontSize:'1.5rem'}}>
+                            <Typography variant='h5' style={{fontSize:matchesSm?'0.85rem':'1.5rem'}}>
                                 {prices[i].label}
                             </Typography>
                 </Grid>
                         <Grid item xs={6}>
-                            <Typography variant='body2' style={{fontSize:'1.5rem',color:'#fff',marginRight:'1rem'}} align='right'>
+                            <Typography variant='body2' style={{fontSize:matchesSm?'0.85rem':'1.5rem',color:'#fff',marginRight:'1rem'}} align='right'>
                             ₹{prices[i].price}
                             </Typography>
                 </Grid>

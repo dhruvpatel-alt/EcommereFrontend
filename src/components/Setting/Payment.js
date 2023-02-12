@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {Grid,Typography,Button,FormControlLabel,Switch} from '@mui/material'
 import cardIcon from '../../images/card.svg'
 import Slot from './Slot'
-function Payment({user,slot,setSlot,checkout,saveCard,setSaveCard}) {
+function Payment({user,slot,setSlot,checkout,saveCard,setSaveCard,isCart}) {
    
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
 
@@ -29,12 +29,13 @@ function Payment({user,slot,setSlot,checkout,saveCard,setSaveCard}) {
 
                 </Grid>}
             </Grid>
-            <Grid item container style={{marginLeft:checkout?'0.5rem':'1rem',marginBottom:checkout?'-7.5rem':'1rem',position:'absolute',bottom:'0'}}
+            <Grid item container style={{marginLeft:checkout?'0.5rem':'1rem',marginBottom:isCart?(matchesMd?'0':'-7.5rem'):checkout?'-7.5rem':'1rem',position:'absolute',bottom:'0'}}
         justifyContent={checkout?'space-between':null}>
             <Slot slot={slot} setSlot={setSlot} noLabel/>
             {checkout&&(<Grid item>
   <FormControlLabel control={<Switch checked={saveCard} onChange={()=>setSaveCard(!saveCard)} 
-  color='secondary'/>} labelPlacement='top' label='Save card for future use' />
+
+  color='primary'/>} labelPlacement='top' label='Save card for future use' />
 </Grid>)}
         </Grid>
     </Grid>

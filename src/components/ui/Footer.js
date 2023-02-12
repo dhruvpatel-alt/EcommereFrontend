@@ -37,7 +37,7 @@ function Footer() {
                 <Grid item >
             <Grid className='handlemediaquery' container direction={window.innerWidth>768?'column':'row'} alignItems="center">
                 {socialMedia.map(platform=>(
-            <Grid item key={platform.alt} >
+            <Grid item key={platform.alt} > 
                     <IconButton component="a" href={platform.link}>
                 <img src={platform.icon} alt={platform.alt}/>
                 </IconButton>

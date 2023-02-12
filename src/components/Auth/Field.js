@@ -28,7 +28,7 @@ function Field({fields,errors,setErrors,values,isPromo,setValues,inDetail,width,
         }} 
           
           label={field.charAt(0).toUpperCase() + field.slice(1)} 
-    style={{width:isPromo?'10rem':matchesXS?'15rem':'30rem',marginBottom:'0rem',backgroundColor:'#FFF',
+    style={{width:isPromo?(matchesXS?'8rem':'10rem'):matchesXS?'15rem':'30rem',marginBottom:'0rem',backgroundColor:'#FFF',
     marginLeft:isPromo?'1rem':''}}
     id="filled-basic"  variant="filled" color="primary" type={fields[field].type}
     placeholder={fields[field].placeholder}
