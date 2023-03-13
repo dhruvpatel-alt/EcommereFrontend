@@ -82,7 +82,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
         }
         else{
         setLoading(true);
-        axios.post('http://localhost:1337/api/orders/place',{
+        axios.post('https://ecommerce-backend-nt72.onrender.com/api/orders/place',{
             shippingAddress:locationValues,
             shippingInfo:detailValues,
             shippingOption:shipping,

@@ -52,7 +52,7 @@ const handleNavigate=direction=>{
 
 const handleComplete=()=>{
     setLoading(true)
-    axios.post('http://localhost:1337/api/auth/local/register',{
+    axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/local/register',{
         username:values.name,
         email:values.email,
         password:values.password

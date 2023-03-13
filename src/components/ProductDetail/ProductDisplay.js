@@ -14,7 +14,7 @@ function ProductDisplay({product}) {
       <div className="product-card">
         <img
         alt={'image'} 
-          src={`http://localhost:1337${variant.images[0].url}`}
+          src={`https://ecommerce-backend-nt72.onrender.com${variant.images[0].url}`}
           width={250}
           height={250}
           className="product-images"

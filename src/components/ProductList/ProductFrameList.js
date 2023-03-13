@@ -28,14 +28,14 @@ function ProductFrameList({product,variant,res,selectedSize,sizes,setSelectedSiz
           <>
           <Grid item key={image.url}  component={Link} to={url} 
           style={{display:matchesMd?'none':null}}>
-          <img src={`http://localhost:1337${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           <Grid item  key={1}  component={Link} to={url}>
-          <img src={`http://localhost:1337${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           <Grid item key={2}  component={Link} to={url}
                  style={{display:matchesMd?'none':null}}>
-          <img src={`http://localhost:1337${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           </>
         ))}

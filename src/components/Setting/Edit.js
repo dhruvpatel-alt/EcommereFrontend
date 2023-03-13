@@ -28,7 +28,7 @@ function Edit({setSelectedSetting,edit,setEdit,details,location,detailSlot,locat
             setLoading(true);
                 user.Contactinfo[detailSlot]=details
                 user.locations[locationSlot]=location
-            axios.put('http://localhost:1337/api/users/'+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
+            axios.put('https://ecommerce-backend-nt72.onrender.com/api/users/'+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
             ,{headers:{
             Authorization:`Bearer ${user.jwt}`,
             'Content-Type': 'application/json'

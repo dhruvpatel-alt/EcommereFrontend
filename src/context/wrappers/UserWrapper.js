@@ -12,7 +12,7 @@ export function UserWrapper({children}){
         useEffect(() => {
             if(storedUser){
             setTimeout(()=>{
-axios.get('http://localhost:1337/api/users/me',{
+axios.get('https://ecommerce-backend-nt72.onrender.com/api/users/me',{
 headers:{
     Authorization:`Bearer ${storedUser.jwt}`
 }

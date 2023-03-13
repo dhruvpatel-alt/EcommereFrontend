@@ -15,7 +15,7 @@ function AdditionalProductDisplay({product}) {
       <Link to={`/${splitName.split('_')[1]}/${splitName.split('_')[0]}${style?`?style=${variant.style}&color=${color}`:`?color=${color}`}`}> 
       <div className="product-card">
         <img 
-          src={`http://localhost:1337${variant.images[0].url}`}
+          src={`https://ecommerce-backend-nt72.onrender.com${variant.images[0].url}`}
           width={250}
           height={250}
           className="product-images"

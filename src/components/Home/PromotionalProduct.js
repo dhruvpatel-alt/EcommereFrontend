@@ -37,7 +37,7 @@ function PromotionalProduct() {
     content:(<Grid container direction='column' >
     <Grid item>
         <IconButton disableRipple onClick={()=>setSelectedSlides(i)}>
-        <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`http://localhost:1337${node.images[0].url}`} alt={node.product.Name}/>        </IconButton>
+        <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`https://ecommerce-backend-nt72.onrender.com${node.images[0].url}`} alt={node.product.Name}/>        </IconButton>
     </Grid>
 </Grid>)  ,
    description:node.product.Description

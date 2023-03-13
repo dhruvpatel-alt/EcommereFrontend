@@ -28,7 +28,7 @@ function Item({item}) {
   return (
     <Grid item container style={{margin:matchesMd?'2rem 0':'2rem 0 2rem 2rem',flexWrap:'nowrap'}}>
         <Grid item style={{backgroundColor:'#f2eaf1'}}>
-            <img src={`http://localhost:1337${item.variant.images[0].url}`} alt={item.variant.id}
+            <img src={`https://ecommerce-backend-nt72.onrender.com${item.variant.images[0].url}`} alt={item.variant.id}
             style={{height:'10rem',width:'10rem'}}/>
             </Grid>
             <Grid item container justifyContent='space-between' style={{width:'35rem',position:'relative',height:'8rem',marginLeft:'1rem'}} >

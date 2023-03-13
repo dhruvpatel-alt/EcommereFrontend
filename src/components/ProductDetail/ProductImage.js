@@ -20,13 +20,13 @@ function ProductImage({images,selectedImage,setSelectedImage}) {
   return (
     <Grid item container direction='column' alignItems='center'  xs={6} > 
       <Grid item >
-        <img src={`http://localhost:1337${images[selectedImage].url}`} alt='product_large' className={classes.selected}/>
+        <img src={`https://ecommerce-backend-nt72.onrender.com${images[selectedImage].url}`} alt='product_large' className={classes.selected}/>
         </Grid>
         <Grid item container justifyContent='center' >
           {images.map((image,i)=>(
        <Grid item  key={`${image.url}1`}  style={{margin:'1rem'}}  >
         <IconButton onClick={()=>setSelectedImage(i)}>
-        <img src={`http://localhost:1337${image.url}`} alt={`product_small${i}`} className={classes.small}/>
+        <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={`product_small${i}`} className={classes.small}/>
         </IconButton>
         </Grid>
           ))}

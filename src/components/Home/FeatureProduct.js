@@ -52,7 +52,7 @@ function FeatureProduct() {
      ,borderRadius:0,width:matchesMd?'20rem':'25rem',height:matchesMd?'19.8rem':'24.5rem',boxSizing:'border-box'
      ,boxShadow:"5px",position:'absolute',zIndex:1}} 
      onClick={()=>expanded===i?setExpanded(null):setExpanded(i)} >
-    <img  style={{height:matchesMd?'15rem':'20rem',width:matchesMd?'15rem':'20rem'}} src={`http://localhost:1337${node.images[0].url}`} alt={node.product.Name}/>
+    <img  style={{height:matchesMd?'15rem':'20rem',width:matchesMd?'15rem':'20rem'}} src={`https://ecommerce-backend-nt72.onrender.com${node.images[0].url}`} alt={node.product.Name}/>
     </IconButton>     
     <Grid container direction='column' style={{backgroundColor:'#1e90ff',height:matchesMd?'15.2rem':'20rem',width:matchesMd?'19.5rem':'24.5rem',transform :(!matchesMd&&expanded)===i&&alignment==='flex-end'?'translate(-24.95rem,0px)':(!matchesMd&&expanded===i)&&(alignment==='flex-start'||alignment==='center')?'translate(24.95rem,0px)':matchesMd&&expanded===i?'translate(0,17rem)':null, transition:"transform 0.5s ease",zIndex:0,padding:"1rem 2rem"}}
  >

@@ -13,7 +13,7 @@ function ProductFrame({variant,product,res,selectedSize,sizes,setSelectedSize,se
 
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const imageIndex=colorIndex(product,selectedColor,variant)
-    const imgUrl='http://localhost:1337'+(imageIndex!==-1?product.node.variants[imageIndex].images[0].url:variant.images[0].url)
+    const imgUrl='https://ecommerce-backend-nt72.onrender.com'+(imageIndex!==-1?product.node.variants[imageIndex].images[0].url:variant.images[0].url)
   const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color.split('#')[1]}`:''}`
 
   return (
@@ -22,7 +22,7 @@ function ProductFrame({variant,product,res,selectedSize,sizes,setSelectedSize,se
             <Grid item 
             style={{backgroundImage:`url(${frame})`,backgroundPosition:'center',backgroundSize:'contain',backgroundRepeat:'no-repeat',width:matchesMd?'22rem':'25rem',height:'25rem',marginBottom:'5rem'
         ,display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <img src={`http://localhost:1337${variant.images[0].url}`} alt={product.node.Name} style={{height:'20rem',width:'20rem'}} />
+                <img src={`https://ecommerce-backend-nt72.onrender.com${variant.images[0].url}`} alt={product.node.Name} style={{height:'20rem',width:'20rem'}} />
             </Grid>
             <Grid item style={{backgroundColor:'#1e90ff',height:'5rem',width:matchesMd?'22rem':'25rem',marginTop:matchesMd?'-6.7rem':'-5.2rem',marginBottom:'5rem',display:'flex',justifyContent:'center',alignItems:'center'}}>
                 <Typography variant='h5'>

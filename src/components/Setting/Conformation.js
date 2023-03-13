@@ -24,7 +24,7 @@ function Conformation({dialog,setDialog,user,dispatchFeedback,setSnackbar}) {
     }
     const handleConfirm=()=>{
             setLoading(true);
-            axios.post('http://localhost:1337/api/auth/local',{
+            axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/local',{
                 identifier:user.email,
                 password:values.password
             }).then(response=>{
