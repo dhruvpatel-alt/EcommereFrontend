@@ -68,8 +68,9 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
     }else{
       recentlyViewed=[{product,selectedVariant}]
     }
+    if(typeof window !=='undefined'){
     window.localStorage.setItem('recentlyViewed',
-    JSON.stringify(recentlyViewed))
+    JSON.stringify(recentlyViewed))}
   }, [])
   const scrollRef=useRef(null)
   const scroll=()=>{

@@ -6,9 +6,11 @@ export default function userReducer(state, action){
     switch (action.type){
         case SET_USER:
             if(user.username==='Guest'){
-                window.localStorage.removeItem('user')
+                if(typeof window !=='undefined'){
+                window.localStorage.removeItem('user')}
             }else{
-                window.localStorage.setItem('user',JSON.stringify(user))
+                if(typeof window !=='undefined'){
+                window.localStorage.setItem('user',JSON.stringify(user))}
                 
             }
             newState=user
