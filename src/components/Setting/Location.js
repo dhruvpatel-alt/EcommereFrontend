@@ -8,7 +8,7 @@ import {FormControlLabel,Switch,Grid,Drawer,Chip} from '@mui/material';
 import locationicon from '../../images/location.svg'
 import streetAdornment from '../../images/street-adornment.svg'
 import zipAdornment from '../../images/zip-adornment.svg'
-import Fields from '../auth/Field'
+import Fields from '../Auth/Field'
 import Slot from './Slot';
 function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors,setErrors,checkout,billing,setBilling}) {
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
