@@ -5,5 +5,5 @@
  */
 
 // You can delete this file if you're not using it
-import rootWrapper from "./src/components/ui/root-wrapper";;
+import rootWrapper from "./src/components/ui/Root-wrapper";;
 export const wrapRootElement=rootWrapper;
