@@ -37,10 +37,11 @@ function PromotionalProduct() {
     content:(<Grid container direction='column' >
     <Grid item>
         <IconButton disableRipple onClick={()=>setSelectedSlides(i)}>
-        <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`https://ecommerce-backend-nt72.onrender.com${node.images[0].url}`} alt={node.product.Name}/>        </IconButton>
+        <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`${node.images[0].url}`} alt={node.product.Name}/>        </IconButton>
     </Grid>
 </Grid>)  ,
-   description:node.product.Description
+   description:node.product.Description,
+   Name:node.product.Name
   }))
  
   return (
@@ -53,7 +54,8 @@ function PromotionalProduct() {
             <Typography variant='h4'>
           {slides[selectedSlides].description}
             </Typography>
-            <Button component={Link} to='/Product'>
+            <Button component={Link}
+  to={`/${slides[selectedSlides].Name.split('_')[1]}/${slides[selectedSlides].Name.split('_')[0]}?${slides[selectedSlides].Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
                 <Typography variant='h4' style={{textTransform:'none',marginRight:'1rem'}}>
                     Explore
                 </Typography>

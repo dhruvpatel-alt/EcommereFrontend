@@ -15,12 +15,20 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   const [selectedImage,setSelectedImage]=useState(0);  
   const [selectedColor,setSelectedColor]=useState(null)
   const imageIndex=colorIndex({node:{variants:variants}},selectedColor,variants[selectedVariant])
-  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))
-  var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
-  const params=new URLSearchParams(window.location.search)
-  const styledVariant=variants.filter(variant=>variant.style===
-    params.get('style')&&variant.Color===`#${params.get('color')}`)[0]
-    var variantIndex=variants.indexOf(styledVariant)
+  var recentlyViewed=[];
+  var AdditionalProducts=[];
+  var params;
+  var styledVariant;
+  var variantIndex=0;
+  if (typeof window !== 'undefined') {
+
+   recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))
+  AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
+   params=new URLSearchParams(window.location.search)
+  console.log(variants)
+   styledVariant=variants.filter(variant=>variant.style===
+    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]}
+     variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]
     var requiredVariant=product.variants[variantIndex]; 
     useEffect(() => {
@@ -40,7 +48,7 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
     var Price=requiredVariant.Price
     var highPrice=Price+Price/10
     var lowPrice=Price-Price/10
-    var additionalVariant=variants.filter(variant=>(variant.Color===requiredVariant.Color||variant.Rating>=avgRating)
+    var additionalVariant=variants.filter(variant=>(variant.Color_label===requiredVariant.Color_label||variant.Rating>=avgRating)
     &&(variant.style?variant.style===requiredVariant.style:true)&&(variant.strapi_id!==requiredVariant.strapi_id)&&(highPrice<Price<lowPrice))
     
     for (let i = 0; i < additionalVariant.length; i++) {
@@ -54,7 +62,7 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
   useEffect(() => {
     setSelectedVariant(variantIndex)
-  }, [params.get('color')])
+  }, [typeof window==='undefined'?[]:params.get('color')])
   
   useEffect(() => {
     var selectedVariant=variantIndex
@@ -68,9 +76,8 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
     }else{
       recentlyViewed=[{product,selectedVariant}]
     }
-    if(typeof window !=='undefined'){
     window.localStorage.setItem('recentlyViewed',
-    JSON.stringify(recentlyViewed))}
+    JSON.stringify(recentlyViewed))
   }, [])
   const scrollRef=useRef(null)
   const scroll=()=>{

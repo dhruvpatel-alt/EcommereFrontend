@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'gatsby';
 import Rating from './Rating'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -52,7 +53,7 @@ function FeatureProduct() {
      ,borderRadius:0,width:matchesMd?'20rem':'25rem',height:matchesMd?'19.8rem':'24.5rem',boxSizing:'border-box'
      ,boxShadow:"5px",position:'absolute',zIndex:1}} 
      onClick={()=>expanded===i?setExpanded(null):setExpanded(i)} >
-    <img  style={{height:matchesMd?'15rem':'20rem',width:matchesMd?'15rem':'20rem'}} src={`https://ecommerce-backend-nt72.onrender.com${node.images[0].url}`} alt={node.product.Name}/>
+    <img  style={{height:matchesMd?'15rem':'20rem',width:matchesMd?'15rem':'20rem'}} src={`${node.images[0].url}`} alt={node.product.Name}/>
     </IconButton>     
     <Grid container direction='column' style={{backgroundColor:'#1e90ff',height:matchesMd?'15.2rem':'20rem',width:matchesMd?'19.5rem':'24.5rem',transform :(!matchesMd&&expanded)===i&&alignment==='flex-end'?'translate(-24.95rem,0px)':(!matchesMd&&expanded===i)&&(alignment==='flex-start'||alignment==='center')?'translate(24.95rem,0px)':matchesMd&&expanded===i?'translate(0,17rem)':null, transition:"transform 0.5s ease",zIndex:0,padding:"1rem 2rem"}}
  >
@@ -65,7 +66,8 @@ function FeatureProduct() {
 ,fontSize:'2rem',color:'#fff',fontWeight:700, fontFamily:"Philosopher", fontStyle:"italic"}}/>
 </Grid>
 <Grid item style={{marginTop:'6rem'}}>
-  <Button style={{textTransform:'none'}}>
+  <Button style={{textTransform:'none'}} component={Link}
+    to={`/${node.product.Name.split('_')[1]}/${node.product.Name.split('_')[0]}?${node.product.Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
 <Typography variant='h5'>
   Details
 </Typography>

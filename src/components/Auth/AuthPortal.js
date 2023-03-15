@@ -21,9 +21,14 @@ function AuthPortal() {
     {component:Reset,label:"Reset"}
   ]
   useEffect(() => {
-    const params=new URLSearchParams(window.location.search)
-    const code=params.get("code")
-    const access_token=params.get("access_token")
+    var code='';
+    var params;
+    var access_token='';
+    if (typeof window !== 'undefined') {
+
+    params=new URLSearchParams(window.location.search)
+    code=params.get("code")
+    access_token=params.get("access_token")}
     if(code){
       const resetStep=steps.find(step=>step.label==='Reset')
       setSelectedStep(steps.indexOf(resetStep))
@@ -35,7 +40,10 @@ function AuthPortal() {
       ).then(response=>{
         dispatchUser(setUser({...response.data.user,jwt:response.data.jwt,
         onboarding:true}))
+        if (typeof window !== 'undefined') {
+
         window.history.replaceState(null,null,window.location.pathname)
+      }
       }).catch(error=>{
         console.error(error)
         console.log(error);

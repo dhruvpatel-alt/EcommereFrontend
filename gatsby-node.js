@@ -5,7 +5,7 @@ exports.createPages = async ({graphql, actions }) => {
       products:allStrapiProduct {
         nodes {
           variants {
-            Color
+            Color_label
             strapi_id
             id
             Price

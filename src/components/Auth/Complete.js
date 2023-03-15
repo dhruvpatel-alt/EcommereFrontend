@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import {Grid,Typography,Button,IconButton} from '@mui/material'
 import checkmark from '../../images/checkmark-outline.svg'
 import forward from '../../images/forward-outline.svg'
+import { Link } from 'gatsby'
 import {setUser} from '../../context/actions/user-actions'
 function Complete({user,dispatchUser}) {
     useEffect(() => {
@@ -25,7 +26,7 @@ function Complete({user,dispatchUser}) {
     </Grid>
             <Grid item container justifyContent='flex-end'>
                 <Grid item style={{marginBottom:'1rem',marginRight:'1rem'}}>
-                <Button>
+                <Button component={Link} to='/'>
                     <Typography variant='h3' 
                      style={{textTransform:'none',color:'#0f5191',fontWeight:'700'}}>
                         Shop

@@ -6,10 +6,7 @@ export default function cartReducer(state,action){
         existingIndex=state.findIndex(item=>item.variant===action.payload.variant);
     }
     const saveData=cart=>{
-        if(typeof window !=='undefined'){
-
-            localStorage.setItem('cart',JSON.stringify(cart))
-        }
+        localStorage.setItem('cart',JSON.stringify(cart))
     }
     switch(action.type){
         case ADD_TO_CART:
@@ -34,8 +31,7 @@ export default function cartReducer(state,action){
             saveData(newCart);
             return newCart;
         case CLEAR_CART:
-            if(typeof window !=='undefined'){
-            localStorage.removeItem('cart');}
+            localStorage.removeItem('cart');
             return [];
         default:
             return state

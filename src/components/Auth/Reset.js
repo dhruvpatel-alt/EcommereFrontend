@@ -18,8 +18,11 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
     const fields={password,confirmation:{...password,placeholder:'confirm password'}}
     const handleReset=()=>{
         setLoading(true)
-        const params=new URLSearchParams(window.location.search)
-        const code=params.get("code")
+        var params,code;
+        if (typeof window !== 'undefined') {
+
+        params=new URLSearchParams(window.location.search)
+        code=params.get("code")}
         console.log('hello from reset')
         axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/reset-password',{
             code:code,
@@ -42,7 +45,9 @@ const disabled=Object.keys(errors).some(error=>errors[error]===true)||Object.key
 useEffect(() => {
     if(!success) return
     const timer=setTimeout(() => {
-        window.history.replaceState(null,null,window.location.pathname)
+        if (typeof window !== 'undefined') {
+
+        window.history.replaceState(null,null,window.location.pathname)}
             const login =steps.find(step=>step.label==='Login')
             setSelectedStep(steps.indexOf(login))
     }, 6000);

@@ -47,9 +47,9 @@ function ProductInfo({Name,Description,variants,selectedVariant,setSelectedVaria
         if(variant.style===variants[selectedVariant].style){
             sizes.push(variant.size)
         }
-        if(!colors.includes(variant.Color)&&variant.size===selectedSize
+        if(!colors.includes(variant.Color_label)&&variant.size===selectedSize
         &&variant.style===variants[selectedVariant].style){
-            colors.push(variant.Color)
+            colors.push(variant.Color_label)
         }
         return 0
     })
@@ -58,7 +58,7 @@ function ProductInfo({Name,Description,variants,selectedVariant,setSelectedVaria
     useEffect(() => {
         setSelectedColor(null)
         const newVariant=variants.find(variant=>variant.size===selectedSize
-            &&variant.style===variants[selectedVariant].style&&variant.Color===
+            &&variant.style===variants[selectedVariant].style&&variant.Color_label===
             colors[0])
             setSelectedVariant(variants.indexOf(newVariant))
         }, [selectedSize])

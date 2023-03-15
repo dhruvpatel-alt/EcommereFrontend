@@ -6,7 +6,7 @@ function ProductDisplay({product}) {
   var variant=product.product.variants[product.selectedVariant]
   var splitName=product.product.Name.toLowerCase()
   if(!variant.style){style=null}else{style=variant.style}
-  var color=variant.Color.split('#')[1]
+  var color=variant.Color_label
   return (
 
     <div >
@@ -14,7 +14,7 @@ function ProductDisplay({product}) {
       <div className="product-card">
         <img
         alt={'image'} 
-          src={`https://ecommerce-backend-nt72.onrender.com${variant.images[0].url}`}
+          src={`${variant.images[0].url}`}
           width={250}
           height={250}
           className="product-images"

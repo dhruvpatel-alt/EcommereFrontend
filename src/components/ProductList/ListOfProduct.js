@@ -25,9 +25,9 @@ function ListOfProduct({products,layout,page,productsPerPage,content,sortOptions
       if(item.style===variant.style){
         sizes.push(item.size)
       }
-      if(!colors.includes(item.Color)&&item.size===(selectedSize||variant.size)
+      if(!colors.includes(item.Color_label)&&item.size===(selectedSize||variant.size)
       &&item.style===variant.style){
-          colors.push(item.Color)
+          colors.push(item.Color_label)
       }
     })
       for (let i = colors.length; i--;){
@@ -36,12 +36,12 @@ function ListOfProduct({products,layout,page,productsPerPage,content,sortOptions
         };
       }
       const hasStyles=product.node.variants.some(variant=>variant.style!==null)
-      const hasColors=product.node.variants.some(variant=>variant.Color!==null)
+      const hasColors=product.node.variants.some(variant=>variant.Color_label!==null)
       useEffect(() => {
         if(selectedSize===null)return undefined;
         setSelectedColor(null)
         const newVariant=product.node.variants.find(item=>item.size===selectedSize
-            &&item.style===variant.style&&item.Color===
+            &&item.style===variant.style&&item.Color_label===
             colors[0])
             setSelectedVariant(newVariant)
     }, [selectedSize])
