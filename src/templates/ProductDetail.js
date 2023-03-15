@@ -32,8 +32,12 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   else{
 const params=''
   }
+  if (typeof window !== 'undefined') {
   const styledVariant=variants.filter(variant=>variant.style===
-    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
+    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]}
+    else{
+      const styledVariant=variants[0]
+    }
     var variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]
     var requiredVariant=product.variants[variantIndex]; 
