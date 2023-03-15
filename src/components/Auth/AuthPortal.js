@@ -21,7 +21,11 @@ function AuthPortal() {
     {component:Reset,label:"Reset"}
   ]
   useEffect(() => {
-    const params=new URLSearchParams(window.location.search)
+    if (typeof window !== 'undefined') {
+    const params=new URLSearchParams(window.location.search)}
+  else{
+    const params=''
+  }
     const code=params.get("code")
     const access_token=params.get("access_token")
     if(code){
@@ -35,7 +39,8 @@ function AuthPortal() {
       ).then(response=>{
         dispatchUser(setUser({...response.data.user,jwt:response.data.jwt,
         onboarding:true}))
-        window.history.replaceState(null,null,window.location.pathname)
+        if (typeof window !== 'undefined') {
+        window.history.replaceState(null,null,window.location.pathname)}
       }).catch(error=>{
         console.error(error)
         console.log(error);

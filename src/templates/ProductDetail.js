@@ -16,13 +16,22 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   const [selectedColor,setSelectedColor]=useState(null)
   const imageIndex=colorIndex({node:{variants:variants}},selectedColor,variants[selectedVariant])
   if (typeof window !== 'undefined') {
-  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))}
+  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))}else{
+
+    var recentlyViewed=[]
+  }
  
   if (typeof window !== 'undefined') {
   var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))}
-  var AdditionalProducts=[]
-  var recentlyViewed=[]
-  const params=new URLSearchParams(window.location.search)
+  else{
+    var AdditionalProducts=[]
+
+  }
+  if (typeof window !== 'undefined') {
+  const params=new URLSearchParams(window.location.search)}
+  else{
+const params=''
+  }
   const styledVariant=variants.filter(variant=>variant.style===
     params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
     var variantIndex=variants.indexOf(styledVariant)
