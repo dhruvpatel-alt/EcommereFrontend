@@ -18,7 +18,10 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   if (typeof window !== 'undefined') {
   var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))}
  
-  var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
+  if (typeof window !== 'undefined') {
+  var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))}
+  var AdditionalProducts=[]
+  var recentlyViewed=[]
   const params=new URLSearchParams(window.location.search)
   const styledVariant=variants.filter(variant=>variant.style===
     params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
