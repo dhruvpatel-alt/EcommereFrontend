@@ -15,7 +15,11 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   const [selectedImage,setSelectedImage]=useState(0);  
   const [selectedColor,setSelectedColor]=useState(null)
   const imageIndex=colorIndex({node:{variants:variants}},selectedColor,variants[selectedVariant])
-  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))
+  if (typeof window !== 'undefined') {
+  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))}
+  else{
+    var recentlyViewed=''
+  }
   var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
   const params=new URLSearchParams(window.location.search)
   const styledVariant=variants.filter(variant=>variant.style===
