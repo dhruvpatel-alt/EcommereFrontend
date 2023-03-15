@@ -40,7 +40,8 @@ const handleCart=()=>{
 }
 const activeIndex=()=>{
   for (let i = 0; i < 4; i++) {
-    if(typeof window!==null){
+      if (typeof window !== 'undefined') {
+
       if(`${routes[i].Name.toLowerCase()}`=== window.location.pathname.split('/')[1]||routes[i].link===window.location.pathname){
       return i;
     }}else return 0;
