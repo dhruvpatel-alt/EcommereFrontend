@@ -36,7 +36,7 @@ function FeatureProduct() {
       
     `)
     
-
+// console.log(data.allStrapiVariant.nodes)
   return (
     <Grid container direction='column'
      style={{backgroundImage:`url(${featuredAdornment})`
@@ -68,11 +68,13 @@ function FeatureProduct() {
 <Grid item style={{marginTop:'6rem'}}>
   <Button style={{textTransform:'none'}} component={Link}
     to={`/${node.product.Name.split('_')[1]}/${node.product.Name.split('_')[0]}?${node.product.Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
+    
 <Typography variant='h5'>
   Details
 </Typography>
 <img src={explore} alt='go to product details' style={{height:'2rem',width:'2rem',marginLeft:'1rem'}}/>
   </Button>
+
 </Grid>
 </Grid>
  </Grid>

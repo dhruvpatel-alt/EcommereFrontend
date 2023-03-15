@@ -10,7 +10,6 @@ function Complete({user,dispatchUser}) {
             dispatchUser(setUser({...user,onboarding:true}))
         }
     }, [])
-    
   return (
     <>
     <Grid item container direction='column' alignItems='center' 
@@ -26,7 +25,7 @@ function Complete({user,dispatchUser}) {
     </Grid>
             <Grid item container justifyContent='flex-end'>
                 <Grid item style={{marginBottom:'1rem',marginRight:'1rem'}}>
-                <Button component={Link} to='/'>
+                <Button>
                     <Typography variant='h3' 
                      style={{textTransform:'none',color:'#0f5191',fontWeight:'700'}}>
                         Shop

@@ -24,7 +24,7 @@ function Item({item}) {
     }
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
   const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
-
+console.log(item)
   return (
     <Grid item container style={{margin:matchesMd?'2rem 0':'2rem 0 2rem 2rem',flexWrap:'nowrap'}}>
         <Grid item style={{backgroundColor:'#f2eaf1'}}>

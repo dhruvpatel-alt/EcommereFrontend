@@ -32,6 +32,7 @@ function PromotionalProduct() {
           }
       }
     `)
+    console.log(data.allStrapiVariant.nodes)
   data.allStrapiVariant.nodes.map((node,i)=>slides.push({
     key:i,
     content:(<Grid container direction='column' >
@@ -54,8 +55,9 @@ function PromotionalProduct() {
             <Typography variant='h4'>
           {slides[selectedSlides].description}
             </Typography>
-            <Button component={Link}
-  to={`/${slides[selectedSlides].Name.split('_')[1]}/${slides[selectedSlides].Name.split('_')[0]}?${slides[selectedSlides].Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
+            <Button component={Link} 
+              to={`/${slides[selectedSlides].Name.split('_')[1]}/${slides[selectedSlides].Name.split('_')[0]}?${slides[selectedSlides].Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
+
                 <Typography variant='h4' style={{textTransform:'none',marginRight:'1rem'}}>
                     Explore
                 </Typography>

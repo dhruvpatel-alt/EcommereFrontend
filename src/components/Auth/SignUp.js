@@ -14,7 +14,7 @@ import backward from '../../images/backwards-outline.svg'
 function SignUp({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedback}) {
 const [info,setInfo]=useState(false)
 const [errors, setErrors] = useState({})
-const [visible,setVisible]=useState(false)
+const [visible,setVisible]=useState(true)
 
 const [loading, setLoading] = useState(false)
 
@@ -52,7 +52,7 @@ const handleNavigate=direction=>{
 
 const handleComplete=()=>{
     setLoading(true)
-    axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/local/register',{
+    axios.post('http://localhost:1337/api/auth/local/register',{
         username:values.name,
         email:values.email,
         password:values.password

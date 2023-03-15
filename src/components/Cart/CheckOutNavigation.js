@@ -38,7 +38,7 @@ function CheckOutNavigation({steps,selectedStep,setSelectedStep,detailValues,loc
             isDetails&&(user.Contactinfo[detailSlot]=detailValues)
             isLocation&&(user.locations[locationSlot]=locationValues)
         }
-         axios.put('https://ecommerce-backend-nt72.onrender.com/api/users/'+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
+         axios.put('https://ecommerce-back-nla0.onrender.com/api/users/'+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
             ,{headers:{
             Authorization:`Bearer ${user.jwt}`,
             'Content-Type': 'application/json'

@@ -5,7 +5,7 @@ import frame from '../../images/product-frame-grid.svg'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import QuickView from './QuickView'
 export const colorIndex=(product,color,variant)=>{
-    return product.node.variants.indexOf(product.node.variants.filter(item=>item.Color_label===color
+    return product.node.variants.indexOf(product.node.variants.filter(item=>item.Color===color
         &&variant.style===item.style&&item.size===variant.size)[0])
 }
 function ProductFrame({variant,product,res,selectedSize,sizes,setSelectedSize,selectedColor,setSelectedColor,hasStyles,hasColors,stock}) {
@@ -14,7 +14,7 @@ function ProductFrame({variant,product,res,selectedSize,sizes,setSelectedSize,se
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const imageIndex=colorIndex(product,selectedColor,variant)
     const imgUrl=''+(imageIndex!==-1?product.node.variants[imageIndex].images[0].url:variant.images[0].url)
-  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color_label}`:''}`
+  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color.split('#')[1]}`:''}`
 
   return (
     <Grid item style={{visibility:open?'hidden':null}} >
