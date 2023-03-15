@@ -51,8 +51,9 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
     }
   }
   );
+  if (typeof window !== 'undefined') {
   window.sessionStorage.setItem('AdditionalProducts',
-  JSON.stringify(AdditionalProducts))
+  JSON.stringify(AdditionalProducts))}
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
   useEffect(() => {
     setSelectedVariant(variantIndex)
