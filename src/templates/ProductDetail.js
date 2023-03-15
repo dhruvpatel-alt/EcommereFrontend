@@ -34,11 +34,11 @@ const params=''
   }
   if (typeof window !== 'undefined') {
   const styledVariant=variants.filter(variant=>variant.style===
-    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]}
+    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
+    var variantIndex=variants.indexOf(styledVariant)}
     else{
-      const styledVariant=0
+      var variantIndex=0
     }
-    var variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]
     var requiredVariant=product.variants[variantIndex]; 
     useEffect(() => {
