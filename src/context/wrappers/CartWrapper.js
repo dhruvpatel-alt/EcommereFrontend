@@ -5,9 +5,7 @@ const CartProvider=CartContext.Provider;
 
 function CartWrapper({children}) {
 
-  if (typeof window !== 'undefined') {
-    const storedCart=JSON.parse(localStorage.getItem('cart'))}
-    const storedCart=[]
+    const storedCart=JSON.parse(localStorage.getItem('cart'))
     const [cart,dispatchCart]=useReducer(cartReducer,storedCart||[])
   return(
      <CartProvider value={{cart,dispatchCart}}>

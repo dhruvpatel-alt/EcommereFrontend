@@ -15,30 +15,12 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   const [selectedImage,setSelectedImage]=useState(0);  
   const [selectedColor,setSelectedColor]=useState(null)
   const imageIndex=colorIndex({node:{variants:variants}},selectedColor,variants[selectedVariant])
-  if (typeof window !== 'undefined') {
-  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))}else{
-
-    var recentlyViewed=[]
-  }
- 
-  if (typeof window !== 'undefined') {
-  var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))}
-  else{
-    var AdditionalProducts=[]
-
-  }
-  if (typeof window !== 'undefined') {
-  const params=new URLSearchParams(window.location.search)}
-  else{
-const params=''
-  }
-  if (typeof window !== 'undefined') {
+  var recentlyViewed=JSON.parse(window.localStorage.getItem('recentlyViewed'))
+  var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
+  const params=new URLSearchParams(window.location.search)
   const styledVariant=variants.filter(variant=>variant.style===
     params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
-    var variantIndex=variants.indexOf(styledVariant)}
-    else{
-      var variantIndex=0
-    }
+    var variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]
     var requiredVariant=product.variants[variantIndex]; 
     useEffect(() => {
@@ -67,15 +49,12 @@ const params=''
     }
   }
   );
-  if (typeof window !== 'undefined') {
   window.sessionStorage.setItem('AdditionalProducts',
-  JSON.stringify(AdditionalProducts))}
+  JSON.stringify(AdditionalProducts))
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
-  if(typeof window!=='undefined'){
-    useEffect(() => {
-      setSelectedVariant(variantIndex)
-    }, [params.get('color')])
-  }
+  useEffect(() => {
+    setSelectedVariant(variantIndex)
+  }, [params.get('color')])
   
   useEffect(() => {
     var selectedVariant=variantIndex
