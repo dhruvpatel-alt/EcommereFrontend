@@ -8,7 +8,7 @@ export function UserWrapper({children}){
     const defaultUser={username:'Guest'}
     if (typeof window !== 'undefined') {
     const storedUser=JSON.parse(localStorage.getItem('user'))}
-   
+   const storedUser=defaultUser
     const [user,dispatchUser]=useReducer(userReducer,
         storedUser||defaultUser)
         useEffect(() => {
