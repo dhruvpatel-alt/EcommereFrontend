@@ -40,9 +40,10 @@ const handleCart=()=>{
 }
 const activeIndex=()=>{
   for (let i = 0; i < 4; i++) {
-      if(`${routes[i].Name.toLowerCase()}`===(typeof window===null?'': window.location.pathname.split('/')[1])||routes[i].link===(typeof window===null?'': window.location.pathname)){
+    if(typeof window!==null){
+      if(`${routes[i].Name.toLowerCase()}`=== window.location.pathname.split('/')[1]||routes[i].link===window.location.pathname){
       return i;
-    }
+    }}else return 0;
   }
   return -1
 }
