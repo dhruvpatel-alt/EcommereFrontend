@@ -36,7 +36,7 @@ const params=''
   const styledVariant=variants.filter(variant=>variant.style===
     params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]}
     else{
-      const styledVariant=variants[0]
+      const styledVariant=0
     }
     var variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]

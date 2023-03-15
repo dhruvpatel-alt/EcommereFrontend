@@ -22,12 +22,14 @@ function AuthPortal() {
   ]
   useEffect(() => {
     if (typeof window !== 'undefined') {
-    const params=new URLSearchParams(window.location.search)}
-  else{
-    const params=''
-  }
+    const params=new URLSearchParams(window.location.search)
     const code=params.get("code")
-    const access_token=params.get("access_token")
+    const access_token=params.get("access_token")}
+  else{
+    const code=''
+   const  access_token=''
+  }
+ 
     if(code){
       const resetStep=steps.find(step=>step.label==='Reset')
       setSelectedStep(steps.indexOf(resetStep))
