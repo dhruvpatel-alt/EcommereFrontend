@@ -13,7 +13,7 @@ import CartWrapper from '../../context/wrappers/CartWrapper';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: `https://ecommerce-backend-nt72.onrender.com/graphql`
+  uri: `https://ecommerce-back-nla0.onrender.com/graphql`
 });
 const client = new ApolloClient({
   cache,

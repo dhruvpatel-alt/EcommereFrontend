@@ -19,7 +19,7 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   var AdditionalProducts=JSON.parse(window.sessionStorage.getItem('AdditionalProducts'))
   const params=new URLSearchParams(window.location.search)
   const styledVariant=variants.filter(variant=>variant.style===
-    params.get('style')&&variant.Color===`#${params.get('color')}`)[0]
+    params.get('style')&&variant.Color_label===`${params.get('color')}`)[0]
     var variantIndex=variants.indexOf(styledVariant)
     var AdditionalProducts=[]
     var requiredVariant=product.variants[variantIndex]; 

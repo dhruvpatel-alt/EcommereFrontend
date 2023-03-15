@@ -14,7 +14,7 @@ function ProductFrameList({product,variant,res,selectedSize,sizes,setSelectedSiz
   const imageIndex=colorIndex(product,selectedColor,variant);
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
   const images=imageIndex!==-1?product.node.variants[imageIndex].images:variant.images
-  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color.split('#')[1]}`:''}`
+  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color_label}`:''}`
   const selectedVariant=imageIndex===-1?product.node.variants.indexOf(variant):imageIndex
   var stockDisplay=getStockDisplay(stock,selectedVariant);
   var Name=product.node.Name.split("_")[0]
@@ -28,14 +28,14 @@ function ProductFrameList({product,variant,res,selectedSize,sizes,setSelectedSiz
           <>
           <Grid item key={image.url}  component={Link} to={url} 
           style={{display:matchesMd?'none':null}}>
-          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           <Grid item  key={1}  component={Link} to={url}>
-          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           <Grid item key={2}  component={Link} to={url}
                  style={{display:matchesMd?'none':null}}>
-          <img src={`https://ecommerce-backend-nt72.onrender.com${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
+          <img src={`${image.url}`} alt={image.url} style={{height:'18rem',width:'18rem'}} />
           </Grid>
           </>
         ))}

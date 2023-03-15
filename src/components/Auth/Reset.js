@@ -21,7 +21,7 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
         const params=new URLSearchParams(window.location.search)
         const code=params.get("code")
         console.log('hello from reset')
-        axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/reset-password',{
+        axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/reset-password',{
             code:code,
             password:values.password,
             passwordConfirmation:values.confirmation

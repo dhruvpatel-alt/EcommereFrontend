@@ -15,8 +15,7 @@ import close from '../../images/close.svg'
 import {setUser} from '../../context/actions/user-actions'
 import { setSnackbar} from '../../context/actions/feedback-actions'
 
-export const EmailPassword=(hideEmail,hidePassword,visible,setVisible,EmailPadding,PasswordPadding,color)=>(
-
+export const EmailPassword=(hideEmail,hidePassword,passVisible,setPassVisible,EmailPadding,PasswordPadding,color)=>(
     {
       email:{
             helperText:'Invalid Email',
@@ -32,20 +31,20 @@ export const EmailPassword=(hideEmail,hidePassword,visible,setVisible,EmailPaddi
             helperText:'Your password must be atleast 8 characters include one UpperCase letter,one number and one special Characters',
             placeholder:'*******',
             hidden:hidePassword,
-            type:visible?'text':'password',
+            type:passVisible?'text':'password',
             startAdornment:(
         <div style={{width:useMediaQuery(theme=>theme.breakpoints.down('sm'))?'2rem':'3rem',padding:useMediaQuery(theme=>theme.breakpoints.down('sm'))||PasswordPadding?'0rem 0.5rem':'0 0.7rem',paddingBottom:PasswordPadding?'1rem':'3rem',height:'2rem'}}><PasswordAdornment color={color?color:null}/></div>
             ),
             endAdornment:(
               <div style={{width:'2rem',height:'2rem',cursor:'pointer'}} onClick={()=>{
-                setVisible(!visible)
-                // console.log(visible)
+              setPassVisible(!passVisible)
               }}>  
-              {visible?<HidePassword/>:<ShowPassword/>}
+              {passVisible?<HidePassword/>:<ShowPassword/>}
               </div>
             )
           }
         }
+         
 )
                                                       
 function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedback,defaultUser}) {
@@ -62,7 +61,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
   const handleLogin=()=>{
     setLoading(true)
     dispatchUser(setUser(defaultUser))
-    axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/local',{
+    axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/local',{
       identifier:values.email,
       password:values.password
     }).then(response=>{
@@ -84,7 +83,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
   }
   const handleForget=()=>{
     setLoading(true)
-    axios.post('https://ecommerce-backend-nt72.onrender.com/api/auth/forgot-password',{
+    axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/forgot-password',{
       email:values.email
     },{headers:{
       'Content-Type':'application/json',
@@ -94,6 +93,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
       setLoading(false)
       dispatchFeedback(setSnackbar({status:'success',message:'Reset Code Sent'}))
     },error=>{
+      
       const message=error.response.data.error.message 
       dispatchFeedback(setSnackbar({status:'error',message:message}))
       setLoading(false)
@@ -105,7 +105,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
     setSelectedStep(steps.indexOf(signUp))
   }
   
-  const disabled=Object.keys(errors).some(error=>errors[error]===true)||Object.keys(errors).length!==Object.keys(values).length
+const disabled=Object.keys(errors).some(error=>errors[error]===true)||Object.keys(errors).length!==Object.keys(values).length
 useEffect(() => {
   if(!success) return
   const timer=setTimeout(() => {
@@ -134,7 +134,7 @@ const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
     { !forget? <Grid item>
       <Button disabled={loading} 
       component="a"
-      href="https://ecommerce-backend-nt72.onrender.com/api/connect/facebook">
+      href="https://ecommerce-back-nla0.onrender.com/api/connect/facebook">
         <Typography variant='h3' style={{textTransform:'none',textAlign:matchesSm?'center':null,fontSize:matchesSm?'1rem':null}}>
           Login With Facebook
         </Typography>

@@ -8,7 +8,7 @@ import Swatches from './Swatches'
 import QtyButton from './QtyButton'
 import {getStockDisplay} from '../ProductDetail/ProductInfo'
 function QuickView({open,setOpen,url,hasStyles,name,price,res,selectedSize,sizes,setSelectedSize,selectedColor,setSelectedColor,product,variant,hasColors,stock,imageIndex}) {
-  const linkUrl=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color.split('#')[1]}`:''}`
+  const linkUrl=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color_label}`:''}`
    const selectedVariant=imageIndex===-1?product.node.variants.indexOf(variant):imageIndex
   var stockDisplay=getStockDisplay(stock,selectedVariant);
   return (
