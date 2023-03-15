@@ -71,9 +71,11 @@ const params=''
   window.sessionStorage.setItem('AdditionalProducts',
   JSON.stringify(AdditionalProducts))}
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
-  useEffect(() => {
-    setSelectedVariant(variantIndex)
-  }, [params.get('color')])
+  if(typeof window!=='undefined'){
+    useEffect(() => {
+      setSelectedVariant(variantIndex)
+    }, [params.get('color')])
+  }
   
   useEffect(() => {
     var selectedVariant=variantIndex

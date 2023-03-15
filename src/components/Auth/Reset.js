@@ -19,11 +19,11 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
     const handleReset=()=>{
         setLoading(true)
         if (typeof window !== 'undefined') {
-        const params=new URLSearchParams(window.location.search)}
+        const params=new URLSearchParams(window.location.search)
+        const code=params.get("code")}
         else{
-            const params=''
+            const code=''
         }
-        const code=params.get("code")
         console.log('hello from reset')
         axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/reset-password',{
             code:code,
