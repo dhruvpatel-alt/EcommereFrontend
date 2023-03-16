@@ -14,7 +14,9 @@ function PromotionalProduct() {
     const [selectedSlides,setSelectedSlides]=useState(0);
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
-      setIsClient(true)
+      if (typeof window !== 'undefined') {
+        setIsClient(true)
+      }
     }, [])
     var slides=[];
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
