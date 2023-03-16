@@ -21,6 +21,7 @@ function ListOfProduct({products,layout,page,productsPerPage,content,sortOptions
     const [selectedSize,setSelectedSize]=useState(null)
     const [selectedVariant,setSelectedVariant]=useState(null)
     const [selectedColor,setSelectedColor]=useState(null)
+
     product.node.variants.map(item=>{
       if(item.style===variant.style){
         sizes.push(item.size)
@@ -39,12 +40,33 @@ function ListOfProduct({products,layout,page,productsPerPage,content,sortOptions
       const hasColors=product.node.variants.some(variant=>variant.Color_label!==null)
       useEffect(() => {
         if(selectedSize===null)return undefined;
-        setSelectedColor(null)
         const newVariant=product.node.variants.find(item=>item.size===selectedSize
             &&item.style===variant.style&&item.Color_label===
             colors[0])
             setSelectedVariant(newVariant)
     }, [selectedSize])
+      useEffect(() => {
+        
+        var newVariant
+        if (product.node.variants[0].style!==null){
+          if(selectedSize===null){
+            newVariant=product.node.variants.find(item=>item.size===variant.size
+              &&item.style===variant.style&&item.Color_label===
+              selectedColor)
+          }else{
+         newVariant=product.node.variants.find(item=>item.size===selectedSize
+            &&item.style===variant.style&&item.Color_label===
+            selectedColor)}}else{
+              if(selectedSize===null){
+              newVariant=product.node.variants.find(item=>item.size===variant.size
+                &&item.Color_label===selectedColor)}else{
+                  newVariant=product.node.variants.find(item=>item.size===selectedSize
+                    &&item.Color_label===selectedColor)
+                }
+            }
+          
+            setSelectedVariant(newVariant)
+    }, [selectedColor])
       const { data, loading, error } = useQuery(GET_DETAILS, {
         variables: { id: product.node.strapi_id }
       
@@ -57,6 +79,7 @@ function ListOfProduct({products,layout,page,productsPerPage,content,sortOptions
         setStock(data.products.data[0].attributes.variants)
       }
     }, [error,data])
+  
       return (
         <Frame variant={selectedVariant||variant} product={product} res={res} stock={stock}
         sizes={sizes} setSelectedColor={setSelectedColor}  hasStyles={hasStyles}

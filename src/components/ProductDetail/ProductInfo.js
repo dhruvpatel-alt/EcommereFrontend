@@ -60,8 +60,19 @@ function ProductInfo({Name,Description,variants,selectedVariant,setSelectedVaria
         const newVariant=variants.find(variant=>variant.size===selectedSize
             &&variant.style===variants[selectedVariant].style&&variant.Color_label===
             colors[0])
-            setSelectedVariant(variants.indexOf(newVariant))
+            if(variants.indexOf(newVariant)!==-1){
+                setSelectedVariant(variants.indexOf(newVariant))
+
+            }
         }, [selectedSize])
+        useEffect(()=>{
+            const newVariant=variants.find(variant=>variant.size===selectedSize
+                &&variant.style===variants[selectedVariant].style&&variant.Color_label===selectedColor)
+            if(variants.indexOf(newVariant)!==-1){
+
+            setSelectedVariant(variants.indexOf(newVariant))
+            }
+        },[selectedColor])
         useEffect(() => {
             setSelectedSize(variants[selectedVariant].size)
         }, [selectedVariant])

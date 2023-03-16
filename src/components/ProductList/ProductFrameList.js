@@ -18,6 +18,7 @@ function ProductFrameList({product,variant,res,selectedSize,sizes,setSelectedSiz
   const selectedVariant=imageIndex===-1?product.node.variants.indexOf(variant):imageIndex
   var stockDisplay=getStockDisplay(stock,selectedVariant);
   var Name=product.node.Name.split("_")[0]
+ 
   return (
     <>
     <Grid item container 

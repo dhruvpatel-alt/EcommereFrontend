@@ -39,12 +39,12 @@ function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors
             'Accept':'application/json'
           }}).then(response=>{
             setLoading(false);
-            console.log(response.data)
+            // console.log(response.data)
             if(response.data==='not found'){
               dispatchFeedback(setSnackbar({status:'error',message:'City and State corresponding to this zip code was not found ,pls try again!'}))
             }else{
               const data=response.data.result
-              console.log(data)
+              // console.log(data)
               if(data.length >1){
                 let item=data
               setPlace(item)
@@ -121,7 +121,7 @@ useEffect(() => {
       onChange={(e)=>{setPlace(e.target.value)}}
       >
       {places.map(element=>{
-          console.log(element)
+          // console.log(element)
      return   <FormControlLabel value={element[0]} control={<Radio />} label={element[0]} />
   }
     )}

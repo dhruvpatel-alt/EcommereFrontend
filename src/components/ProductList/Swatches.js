@@ -4,7 +4,7 @@ import {useMediaQuery} from '@mui/material';
 
 function Swatches({colors,selectedColor,setSelectedColor,scroll}) {
   const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
-   
+  //  console.log(colors,selectedColor)
   return (
     <Grid item container>
         {colors.sort().map(color=>(

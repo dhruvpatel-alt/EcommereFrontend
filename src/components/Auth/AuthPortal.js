@@ -46,7 +46,7 @@ function AuthPortal() {
       }
       }).catch(error=>{
         console.error(error)
-        console.log(error);
+        // console.log(error);
         dispatchFeedback(setSnackbar({"status":"error",
         message:'Connecting  To Facebook failed,pls try again'}))
       })

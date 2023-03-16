@@ -58,7 +58,9 @@ function ProductDetail({pageContext:{Name,id,category,Description,variants,produ
   JSON.stringify(AdditionalProducts))}
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
   useEffect(() => {
-    setSelectedVariant(variantIndex)
+    if(variantIndex!==-1){
+      setSelectedVariant(variantIndex)
+    }
   }, [typeof window==='undefined'?[]:params.get('color')])
   
   useEffect(() => {
@@ -94,7 +96,7 @@ useEffect(() => {
     setStock(data.products.data[0].attributes.variants)
   }
 }, [error,data])
-
+console.log(selectedVariant,selectedImage)
   return (
     <Layout>
       <Grid container direction='column'>

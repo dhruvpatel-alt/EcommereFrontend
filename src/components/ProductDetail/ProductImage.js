@@ -16,7 +16,6 @@ function ProductImage({images,selectedImage,setSelectedImage}) {
     },
   }))
   const classes=useStyles()
-  
   return (
     <Grid item container direction='column' alignItems='center'  xs={6} > 
       <Grid item >

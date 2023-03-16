@@ -14,7 +14,7 @@ function ProductFrame({variant,product,res,selectedSize,sizes,setSelectedSize,se
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const imageIndex=colorIndex(product,selectedColor,variant)
     const imgUrl=''+(imageIndex!==-1?product.node.variants[imageIndex].images[0].url:variant.images[0].url)
-  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color.split('#')[1]}`:''}`
+  const url=`/${product.node.variant_2.Name.toLowerCase()}/${product.node.Name.split("_")[0].toLowerCase()}${hasStyles?`?style=${variant.style}`:''}${hasColors?`${hasStyles?'&':'?'}color=${variant.Color_label}`:''}`
 
   return (
     <Grid item style={{visibility:open?'hidden':null}} >
