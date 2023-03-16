@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from "gatsby"
 import './ProductDisplay.css'
-import { style } from '@mui/system'
 
 function AdditionalProductDisplay({product}) {
   var splitName=product.product_2.Name.toLowerCase()
   var variant=product.product_2.variants[product.Index]
-    
+  var style;    
   if(!variant.style){style=null}else{style=variant.style||undefined}
   var color=variant.Color_label
   return (
