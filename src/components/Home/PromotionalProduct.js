@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import { Button } from '@mui/material';
 import {Link} from 'gatsby'
 import Grid from '@mui/material/Grid';
-import Carousel from 'react-spring-3d-carousel';
+// import Carousel from 'react-spring-3d-carousel';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { useStaticQuery, graphql } from "gatsby"
@@ -12,12 +12,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 function PromotionalProduct() {
     const [selectedSlides,setSelectedSlides]=useState(0);
-    const [isClient, setIsClient] = useState(false)
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
-        setIsClient(true)
-      }
-    }, [])
+    // const [isClient, setIsClient] = useState(false)
+    // useEffect(() => {
+    //   setIsClient(true)
+    // }, [])
     var slides=[];
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const matchesLG=useMediaQuery(theme=>theme.breakpoints.down('lg'))
@@ -55,7 +53,8 @@ function PromotionalProduct() {
     <Grid direction={matchesMd?'column':'row'} container justifyContent={matchesMd?"space-around":"space-between"} alignItems="center" style={{backgroundImage:`url(${promoAdornment})`,backgroundPosition:'top',backgroundSize:'cover',backgroundCover:"no-repeat",width:'100%',height:"70rem",
     padding:matchesXS?"30rem 0rem 10rem":matchesMd?'30rem 5rem 10rem':'30rem 10rem 10rem'}}>
         <Grid item style={{width:matchesXS?'22rem':matchesMd?'35rem':'50rem'}}>
-        {isClient ?(<Carousel slides={slides} goToSlide={selectedSlides}  / >  ):(<></>)}
+          hello
+        {/* {isClient ?(<Carousel slides={slides} goToSlide={selectedSlides}  / >  ):(<></>)} */}
         </Grid>
         <Grid item style={{textAlign:matchesLG?'center':'right',width:matchesXS?'22rem':'24rem',marginTop:matchesLG?'12rem':matchesMd?'14rem':'0'}}>
             <Typography variant='h4'>
