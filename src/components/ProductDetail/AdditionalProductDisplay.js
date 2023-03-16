@@ -5,7 +5,7 @@ import './ProductDisplay.css'
 function AdditionalProductDisplay({product}) {
   var splitName=product.product_2.Name.toLowerCase()
   var variant=product.product_2.variants[product.Index]
-  var style;    
+    var style;
   if(!variant.style){style=null}else{style=variant.style||undefined}
   var color=variant.Color_label
   return (
