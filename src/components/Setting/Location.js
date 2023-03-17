@@ -12,10 +12,10 @@ import Fields from '../Auth/Field'
 import Slot from './Slot';
 function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors,setErrors,checkout,billing,setBilling}) {
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
-  let places=[]
     const [loading,setLoading]=useState(false);
     const [drawer,setDrawer]=useState(false);
     const [place,setPlace]=useState('');
+    const [places,setPlaces]=useState([]);
     const {dispatchFeedback}=useContext(FeedbackContext)
     const fields={
         street:{
@@ -32,7 +32,7 @@ function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors
     const getLocation=()=>{
         setLoading(true);
         
-        axios.post('http://dhruv1609.pythonanywhere.com/getcode',{
+        axios.post('https://dhruv1609.pythonanywhere.com/getcode',{
             pincode:values.zip
         },{headers:{
             'Content-Type':'application/json',
@@ -48,9 +48,11 @@ function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors
               if(data.length >1){
                 let item=data
               setPlace(item)
+              let newplaces=[]
               for(var i=0;i<data.length;i++){
-                places.push(data[i])
+                newplaces.push(data[i])
               }
+              setPlaces(newplaces)
               setDrawer(true)
             }
             const city=data[0].District
@@ -71,6 +73,7 @@ useEffect(() => {
 }, [slot])
 
 useEffect(() => {
+  console.log(place)
     if(!checkout) {
     const changed=Object.keys(user.locations[slot]).some(
       field=>user.locations[slot][field]!==values[field])
@@ -120,11 +123,10 @@ useEffect(() => {
       value={place}
       onChange={(e)=>{setPlace(e.target.value)}}
       >
-      {places.map(element=>{
-          // console.log(element)
-     return   <FormControlLabel value={element[0]} control={<Radio />} label={element[0]} />
-  }
-    )}
+    {places.length===0?(<div>hello</div>):places.map(place=>(
+      <FormControlLabel value={place.Office_Name} control={<Radio />} label={place.Office_Name} />
+    ))}
+
       </RadioGroup>
     </FormControl>
             </Grid>
