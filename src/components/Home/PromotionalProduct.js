@@ -40,14 +40,15 @@ function PromotionalProduct() {
     key:i,
     content:(<Grid container direction='column' >
     <Grid item>
-        <IconButton disableRipple onClick={()=>setSelectedSlides(i)}>
-        <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`${node.images[0].url}`} alt={node.product.Name}/>        </IconButton>
+        <IconButton disableRipple onClick={()=>setSelectedSlides(i)} >
+         <img style={{width:matchesXS?'13rem':matchesMd?'20rem':'30rem',height:matchesXS?'15rem':matchesMd?'20rem':'25rem',backgroundColor:"#fff",borderRadius:20,boxShadow:'5px'}} src={`${node.images[0].url}`} alt={node.product.Name}/>       
+         </IconButton>
     </Grid>
 </Grid>)  ,
    description:node.product.Description,
    Name:node.product.Name
   }))
-
+  const url=`/${slides[selectedSlides].Name.split('_')[1]}/${slides[selectedSlides].Name.split('_')[0]}?${slides[selectedSlides].Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`
   return (
     <Grid direction={matchesMd?'column':'row'} container justifyContent={matchesMd?"space-around":"space-between"} alignItems="center" style={{backgroundImage:`url(${promoAdornment})`,backgroundPosition:'top',backgroundSize:'cover',backgroundCover:"no-repeat",width:'100%',height:"70rem",
     padding:matchesXS?"30rem 0rem 10rem":matchesMd?'30rem 5rem 10rem':'30rem 10rem 10rem'}}>
@@ -59,7 +60,7 @@ function PromotionalProduct() {
           {slides[selectedSlides].description}
             </Typography>
             <Button component={Link} 
-              to={`/${slides[selectedSlides].Name.split('_')[1]}/${slides[selectedSlides].Name.split('_')[0]}?${slides[selectedSlides].Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
+              to={url}>
                 <Typography variant='h4' style={{textTransform:'none',marginRight:'1rem'}}>
                     Explore
                 </Typography>

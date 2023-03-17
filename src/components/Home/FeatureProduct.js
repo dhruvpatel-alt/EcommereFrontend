@@ -45,6 +45,7 @@ function FeatureProduct() {
      ,width:'100%',height:matchesMd?'220rem':"180rem",justifyContent:matchesMd?'space-between':'center',padding:"0 5rem"}}>
 {data.allStrapiVariant.nodes.map((node,i)=>{
     const alignment=matchesMd?'center':i===0||i===3?'flex-start':i===1||i===4?'center':'flex-end';
+    const url=`/${node.product.Name.split('_')[1]}/${node.product.Name.split('_')[0]}?${node.product.Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`
     return (
  <Grid container key={node.strapi_id}  alignItems='center' justifyContent={alignment} style={{margin:'5rem 0'}}>
 <IconButton style={{backgroundImage:`url(${frame})`
@@ -65,9 +66,9 @@ function FeatureProduct() {
 <Chip label={`₨ ${node.Price}`} style={{backgroundColor:'#0f5191'
 ,fontSize:'2rem',color:'#fff',fontWeight:700, fontFamily:"Philosopher", fontStyle:"italic"}}/>
 </Grid>
-<Grid item style={{marginTop:'6rem'}}>
+<Grid item style={{marginTop:matchesMd?'2rem':'6rem'}}>
   <Button style={{textTransform:'none'}} component={Link}
-    to={`/${node.product.Name.split('_')[1]}/${node.product.Name.split('_')[0]}?${node.product.Name.split('_')[1]==='hats'?'&':'style=Male&'}color=white`}>
+    to={url}>
     
 <Typography variant='h5'>
   Details

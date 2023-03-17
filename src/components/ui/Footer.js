@@ -10,9 +10,9 @@ import Theme from './Theme'
 function Footer() {
    const socialMedia=[{icon:facebook,alt:'facebook',link:'https://facebook.com'},{icon:twitter,alt:'twitter',link:'https://twitter.com'},{icon:instagram,alt:'instagram',link:'https://instagram.com'}]
    const routes={
-    "Contact Us":[{label:"(555) 555-5555",href:'tel:(555) 555-5555'},{label:"xyz@gmail.com",href:'mailto:xyz@gmail.com'}],
+    "Contact Us":[{label:"(+91) 9157832159",href:'tel:(+91) 9157832159'},{label:"varx4coder@gmail.com",href:'mailto:varx4coder@gmail.com'}],
     "Customer Service":[{label:"Contact us ",link:'/Contact'},{label:"My account",link:'/Account'}],
-    "Information":[{label:"Privacy Policy",link:'/Privacy-Policy'},{label:"Terms and Condition",link:'/Term-Condition'}],
+    "Information":[{label:"Privacy Policy",link:'/Privacy'},{label:"Terms and Condition",link:'/TermCondition'}],
     
    
    }

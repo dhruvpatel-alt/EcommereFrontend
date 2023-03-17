@@ -131,11 +131,11 @@ return(  <Layout>
             <img src={phone} alt='phone' style={{width:'3rem',height:'3rem',marginRight:matchesXS?'1rem':'2rem'}}/>
             </Grid>
             <Grid item style={{marginLeft:'1rem'}}>
-              <Typography  component='a' href='tel:(555) 555-5555'
+              <Typography  component='a' href='tel:(+91) 9157832159'
               variant='h2'  style={{
                 fontSize:matchesXS?'0.9rem':matchesMd?'1.25rem':'1.5rem'
               }}>
-                (555) 555-5555
+                (+91) 9157832159
               </Typography>
             </Grid>
           </Grid>
