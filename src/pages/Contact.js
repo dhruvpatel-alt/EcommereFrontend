@@ -118,11 +118,11 @@ return(  <Layout>
             <img src={address} alt='address' style={{width:'3rem',height:'3rem' ,marginRight:matchesXS?'1rem':'2rem'}}/>
             </Grid>
             <Grid item style={{marginLeft:'1rem'}}>
-              <Typography variant='h2' component="a" href='https://goo.gl/maps/HZH8Q53R75YsuFd16'
+              <Typography variant='h2' component="a" href='https://goo.gl/maps/csBtoMbn8aRPqMWGA'
               style={{
                 fontSize:matchesXS?'0.9rem':matchesMd?'1.25rem':'1.5rem'
               }}>
-                1234 S Example St wichita ,KS 67111
+                A-5 Darshan Complex ,Ghatlodiya Ahmedabad
               </Typography>
             </Grid>
           </Grid>
@@ -146,9 +146,9 @@ return(  <Layout>
               </div>
             </Grid>
             <Grid item style={{marginLeft:'1rem'}}>
-              <Typography variant='h2'  component='a' href='mailto:example@gmail.com'
+              <Typography variant='h2'  component='a' href='mailto:varx4coder@gmail.com'
               style={{fontSize:matchesXS?'0.9rem':matchesMd?'1.25rem':'1.5rem'}}>
-                example@gmail.com
+                varx4coder@gmail.com
               </Typography>
             </Grid>
           </Grid>
