@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from 'gatsby'
 import { Button, Grid, Typography } from '@mui/material'
 import  complete from '../../images/order-placed.svg'
-function Thankyou({selectedShipping,order}) {
+function Thankyou({selectedShipping,order,selectedStep,stepNumber}) {
     const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
 
     const addToDate=days=>{
@@ -25,7 +25,7 @@ function Thankyou({selectedShipping,order}) {
         }
     }
   return (
-    <Grid item container direction='column' alignItems='center' justifyContent='center' style={{height:'100%'}} >
+    <Grid item container direction='column' alignItems='center' justifyContent='center' style={{height:'100%',display:selectedStep!==stepNumber?"none":"flex"}} >
 <Grid item style={{marginTop:'1rem'}}>
     <img src={complete} alt='order placed'/>
 </Grid>
@@ -36,7 +36,7 @@ function Thankyou({selectedShipping,order}) {
     <Grid item container justifyContent={matchesSm?'space-around':'space-between'} alignItems='center' style={{marginTop:'0.5rem'}}>
     <Grid item>
     <Typography variant='body1' style={{color:'#fff',fontWeight:600,fontSize:matchesSm?'1rem':null}}>
-        Order:#{order.id}
+        Order:#{order?.id}
     </Typography>
     </Grid>
 <Grid item>

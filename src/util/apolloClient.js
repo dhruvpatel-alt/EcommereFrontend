@@ -4,7 +4,7 @@ import { HttpLink } from "apollo-link-http";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: `https://ecommerce-back-nla0.onrender.com/graphql`
+  uri: `https://ecommerce-backend-fxtv.onrender.com/graphql`
 });
 const client = new ApolloClient({
   cache,

@@ -23,8 +23,8 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
 
         params=new URLSearchParams(window.location.search)
         code=params.get("code")}
-        console.log('hello from reset')
-        axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/reset-password',{
+        // console.log('hello from reset')
+        axios.post('https://ecommerce-backend-fxtv.onrender.com/api/auth/reset-password',{
             code:code,
             password:values.password,
             passwordConfirmation:values.confirmation

@@ -10,7 +10,7 @@ import streetAdornment from '../../images/street-adornment.svg'
 import zipAdornment from '../../images/zip-adornment.svg'
 import Fields from '../Auth/Field'
 import Slot from './Slot';
-function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors,setErrors,checkout,billing,setBilling}) {
+function Location({user,edit,setChangesMade,values,setValues,slot,setSlot,errors,setErrors,checkout,billing,setBilling,selectedStep,stepNumber}) {
   const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const [loading,setLoading]=useState(false);
     const [drawer,setDrawer]=useState(false);
@@ -73,7 +73,7 @@ useEffect(() => {
 }, [slot])
 
 useEffect(() => {
-  console.log(place)
+  // console.log(place)
     if(!checkout) {
     const changed=Object.keys(user.locations[slot]).some(
       field=>user.locations[slot][field]!==values[field])
@@ -87,7 +87,7 @@ useEffect(() => {
   }, [values])
   return (
     <Grid item container direction='column' xs={12} lg={6} alignItems='center'
-    justifyContent='center' style={{position:'relative',borderBottom:matchesMd?'4px solid #fff':'',height:'30rem'}}>
+    justifyContent='center' style={{position:'relative',borderBottom:matchesMd?'4px solid #fff':'',height:'30rem',display:checkout&&selectedStep!==stepNumber?"none":"flex"}}>
         <Grid item >
             <img src={locationicon} alt='location setting' style={{marginTop:checkout?'1rem':null}}/>
         </Grid>

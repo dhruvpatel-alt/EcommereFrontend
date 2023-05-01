@@ -9,7 +9,7 @@ import Slot from './Slot';
 import {FormControlLabel,Switch,Grid} from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
 
-function Detail({user,edit,setChangesMade,checkout,values,setValues,slot,setSlot,errors,setErrors,billing,setBilling}) {
+function Detail({user,edit,setChangesMade,checkout,values,setValues,slot,setSlot,errors,setErrors,billing,setBilling,selectedStep,stepNumber}) {
     const [visible,setVisible]=useState(false)
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
     const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
@@ -53,7 +53,7 @@ function Detail({user,edit,setChangesMade,checkout,values,setValues,slot,setSlot
     const classes=useStyles()
   return (
     <Grid item container direction='column' xs={12} lg={6} alignItems='center' justifyContent='center' 
-    style={{position:'relative',borderBottom:matchesMd?'4px solid #fff':'',height:'30rem'}}>
+    style={{position:'relative',borderBottom:matchesMd?'4px solid #fff':'',height:'30rem',display:checkout&&selectedStep!==stepNumber?"none":"flex"}}>
 <Grid item style={{marginTop:matchesSm?'-2rem':undefined,marginBottom:matchesSm?'-2rem':undefined}}>
     <img src={fingerprint} alt='detail setting' style={{marginBottom:checkout?'1rem':'5rem',marginTop:checkout?'1rem':null}}/>
 </Grid>

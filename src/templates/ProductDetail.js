@@ -96,7 +96,7 @@ useEffect(() => {
     setStock(data.products.data[0].attributes.variants)
   }
 }, [error,data])
-console.log(selectedVariant,selectedImage)
+// console.log(selectedVariant,selectedImage)
   return (
     <Layout>
       <Grid container direction='column'>

@@ -35,7 +35,7 @@ function AuthPortal() {
     }else if(access_token){
         axios.post('https://facebooklogin16o9.herokuapp.com/getuser',{
           access_token:access_token,
-          url:"https://ecommerce-back-nla0.onrender.com/"
+          url:"https://ecommerce-backend-fxtv.onrender.com/"
         }
       ).then(response=>{
         dispatchUser(setUser({...response.data.user,jwt:response.data.jwt,

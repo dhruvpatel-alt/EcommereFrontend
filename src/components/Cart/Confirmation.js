@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import axios from 'axios'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Feilds from '../Auth/Field'
@@ -15,12 +15,17 @@ import {CartContext} from '../../context/wrappers/CartWrapper'
 import { setSnackbar} from '../../context/actions/feedback-actions'
 import { clearCart} from '../../context/actions/cart-actions'
 import {FeedbackContext} from '../../context/wrappers/FeedbackWrapper'
+import { v4 as uuidv4 } from 'uuid';
+import { CardElement,useStripe,useElements } from '@stripe/react-stripe-js';
 
-function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shippingOptions,user,selectedStep,setSelectedStep,setOrder}) {
+function Confirmation({detailValues,locationValues,selectedShipping,saveCard,order,shippingOptions,user,selectedStep,setSelectedStep,setOrder,stepNumber}) {
     const {feedback,dispatchFeedback}=useContext(FeedbackContext)
     const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
+    const stripe=useStripe()
+    const elements=useElements()
     const {cart,dispatchCart}=useContext(CartContext);
     const [loading,setLoading]=useState(false)
+    const [clientSecret,setClientSecret]=useState(null)
     const fields=[{value:detailValues.name,adornment:(  <div style={{width:22,height:22}} >
         <NameAdornment color='#fff'/>
     </div>)},
@@ -48,7 +53,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
         },
         {
             label:'SHIPPING',
-            price:shipping.price
+            price:shipping?.price
         },
         {
             label:'TAX',
@@ -69,7 +74,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
                 </Grid>
         </>
     )
-    const handleOrder=()=>{
+    const handleOrder=async()=>{
         if(loading){
 
         }
@@ -82,28 +87,58 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
         }
         else{
         setLoading(true);
-        axios.post('https://ecommerce-back-nla0.onrender.com/api/orders/place',{
+        const idempotencyKey=uuidv4();
+        const cardElement=elements.getElement(CardElement)
+        const result=await stripe.confirmCardPayment(clientSecret,{
+            payment_method:{
+                card:cardElement,
+                billing_details:{
+                    address:{
+                    city:locationValues.city,
+                    state:locationValues.state,
+                    line1:locationValues.street},
+                    email:detailValues.email,
+                    name:detailValues.name,
+                    phone:detailValues.phone
+                }
+            }
+        },{idempotencyKey})
+        if(result.error){
+            console.error(result.error.message)
+            dispatchFeedback(setSnackbar({status:'error',message:result.error.message}))
+            setLoading(false)
+        }else if(result.paymentIntent.status==="succeeded"){
+        console.log(shipping)
+        axios.post('https://ecommerce-backend-fxtv.onrender.com/api/orders/finalize',{
+        
             shippingAddress:locationValues,
             shippingInfo:detailValues,
             shippingOption:shipping,
             subtotal:subtotal.toFixed(2),
             tax:(subtotal*0.05).toFixed(2),
             total:total.toFixed(2),
-            items:cart
+            items:cart,
+            transaction:result.paymentIntent.id
         },{
-            headers:user.username==='Guest'?undefined:{
-                    Authorization:`Bearer ${user.jwt}`
-                }
+            headers:user.jwt?{
+                Authorization:`Bearer ${user.jwt}`
+            }:undefined
             
         }).then(response=>{
             setLoading(false)
             dispatchCart(clearCart())
+            localStorage.removeItem("intentID")
+            setClientSecret(null)
             setSelectedStep(selectedStep+1)
             console.log(response.data.data)
             setOrder(response.data.data)
         }).catch(error=>{
             setLoading(false);
             console.log(error.message)
+            console.log("Failed Payment Intent",result.paymentIntent.id)
+            console.log("Failed Cart",cart)
+            localStorage.removeItem("intentID")
+            setClientSecret(null)
             switch (error.response.status) {
                 case 400:
                     dispatchFeedback(setSnackbar({"status":"error",
@@ -116,14 +151,55 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
                     break;
                 default:
                     dispatchFeedback(setSnackbar({"status":"error",
-                    message:'Something went wrong,pls refresh the page and try again.You have NOT been charged.'}))
+                    message:'There was a problem saving your order.Please keep this screen open and contact support'}))
                     break;
             }
        
-        })
+        })}
     }}
+    useEffect(() => {
+        if(!order&&cart.length!==0&&selectedStep===stepNumber){
+            const storeIntent=localStorage.getItem("intentID")
+            const idempotencyKey=uuidv4()
+            setClientSecret(null)
+            axios.post('https://ecommerce-backend-fxtv.onrender.com/api/orders/process',{
+                items:cart,
+                total:total.toFixed(2),
+                shippingOption:shipping,
+                idempotencyKey,
+                storeIntent,
+                email:detailValues.email
+            },{
+                headers:user.jwt?{
+                    Authorization:`Bearer ${user.jwt}`
+                }:undefined
+            }).then(response=>{
+                setClientSecret(response.data.client_secret)
+                localStorage.setItem("intentID",response.data.intentID)
+            }).catch(error=>{
+                setLoading(false);
+                console.log(error.message)
+                switch (error.response.status) {
+                    case 400:
+                        dispatchFeedback(setSnackbar({"status":"error",
+                        message:'Invalid Cart ,Pls try again! '}))
+                        break;
+                    case 409:
+                        dispatchFeedback(setSnackbar({"status":"error",
+                        message:'The following items are not available at the requested quantity.Please update your cart and try again.\n'+`${error.response.data.unavailable.map(item=>
+                            `\nItem:${item.id},Available:${item.qty}`)}`}))
+                        break;
+                    default:
+                        dispatchFeedback(setSnackbar({"status":"error",
+                        message:'Something went wrong,pls refresh the page and try again.You have NOT been charged.'}))
+                        break;
+                }
+            })
+        }
+    }, [cart,selectedStep,stepNumber])
+    console.log(clientSecret)
   return (
-    <Grid item container direction='column' style={{height:'100%'}}>
+    <Grid item container direction='column' style={{height:'100%',display:selectedStep!==stepNumber?"none":"flex"}}>
         <Grid item container>
             <Grid item container xs={7} direction='column'>
                 {fields.map((field,i)=>(
@@ -168,7 +244,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,shi
             ))}
             <Grid item style={{margin:'auto',marginTop:'1rem',width:'100%'}}>
                 <Button style={{width:"100%",height:'5rem',borderRadius:0,backgroundColor:(cart.length===0||loading)?'#747474':'#0f5191'}}
-                onClick={handleOrder} disabled={cart.length===0||loading}>
+                onClick={handleOrder} disabled={cart.length===0||loading||!clientSecret}>
                     <Grid  container justifyContent='space-around' alignItems='center'>
                         <Grid item>
                             <Typography variant='h5'>

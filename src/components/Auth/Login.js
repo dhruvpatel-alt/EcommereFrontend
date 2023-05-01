@@ -61,7 +61,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
   const handleLogin=()=>{
     setLoading(true)
     dispatchUser(setUser(defaultUser))
-    axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/local',{
+    axios.post('https://ecommerce-backend-fxtv.onrender.com/api/auth/local',{
       identifier:values.email,
       password:values.password
     }).then(response=>{
@@ -83,7 +83,7 @@ function Login({steps,setSelectedStep,user,dispatchUser,dispatchFeedback,feedbac
   }
   const handleForget=()=>{
     setLoading(true)
-    axios.post('https://ecommerce-back-nla0.onrender.com/api/auth/forgot-password',{
+    axios.post('https://ecommerce-backend-fxtv.onrender.com/api/auth/forgot-password',{
       email:values.email
     },{headers:{
       'Content-Type':'application/json',
@@ -134,7 +134,7 @@ const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
     { !forget? <Grid item>
       <Button disabled={loading} 
       component="a"
-      href="https://ecommerce-back-nla0.onrender.com/api/connect/facebook">
+      href="https://ecommerce-backend-fxtv.onrender.com/api/connect/facebook">
         <Typography variant='h3' style={{textTransform:'none',textAlign:matchesSm?'center':null,fontSize:matchesSm?'1rem':null}}>
           Login With Facebook
         </Typography>

@@ -2,10 +2,10 @@ import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Grid,Button,Typography } from '@material-ui/core'
 import shippingIcon from '../../images/shipping.svg'
-function Shipping({shippingOptions,selectedShipping,setSelectedShipping}) {
+function Shipping({shippingOptions,selectedShipping,setSelectedShipping,selectedStep,stepNumber}) {
     const matchesSm=useMediaQuery(theme=>theme.breakpoints.down('sm'))
   return (
-    <Grid item container direction='column' alignItems='center' justifyContent='space-around' style={{height:'30rem'}}>
+    <Grid item container direction='column' alignItems='center' justifyContent='space-around' style={{height:'30rem',display:selectedStep!==stepNumber?"none":"flex"}}>
         <Grid item>
             <img src={shippingIcon} alt='shipping' style={{marginTop:'1.4rem'}}/>
         </Grid>
