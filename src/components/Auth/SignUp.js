@@ -52,7 +52,7 @@ const handleNavigate=direction=>{
 
 const handleComplete=()=>{
     setLoading(true)
-    axios.post('https://ecommerce-backend-fxtv.onrender.com/api/auth/local/register',{
+    axios.post(`${process.env.BACKEND_URL}api/auth/local/register`,{
         username:values.name,
         email:values.email,
         password:values.password

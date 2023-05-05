@@ -5,7 +5,6 @@ import Heroblock from "../components/Home/Hero-block"
 import Marketing from "../components/Home/Marketing"
 import PromotionalProduct from "../components/Home/PromotionalProduct"
 import Layout from "../components/ui/Layout"
-
 const IndexPage = () => (
 
 
