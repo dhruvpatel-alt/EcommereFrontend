@@ -14,7 +14,7 @@ export function UserWrapper({children}){
         useEffect(() => {
             if(storedUser){
             setTimeout(()=>{
-axios.get(`${process.env.BACKEND_URL}/api/users/me`,{
+axios.get(`https://ecommerce-backend-ql48.onrender.com/api/users/me`,{
 headers:{
     Authorization:`Bearer ${storedUser.jwt}`
 }

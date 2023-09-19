@@ -24,7 +24,7 @@ function Reset({steps,setSelectedStep,dispatchFeedback}) {
         params=new URLSearchParams(window.location.search)
         code=params.get("code")}
         // console.log('hello from reset')
-        axios.post(`${process.env.BACKEND_URL}/api/auth/reset-password`,{
+        axios.post(`https://ecommerce-backend-ql48.onrender.com/api/auth/reset-password`,{
             code:code,
             password:values.password,
             passwordConfirmation:values.confirmation
