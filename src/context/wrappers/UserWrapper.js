@@ -14,7 +14,7 @@ export function UserWrapper({children}){
         useEffect(() => {
             if(storedUser){
             setTimeout(()=>{
-axios.get(`${process.env.BACKEND_URL}api/users/me`,{
+axios.get(`${process.env.BACKEND_URL}/api/users/me`,{
 headers:{
     Authorization:`Bearer ${storedUser.jwt}`
 }

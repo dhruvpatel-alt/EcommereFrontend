@@ -89,27 +89,14 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,ord
         setLoading(true);
         const idempotencyKey=uuidv4();
         const cardElement=elements.getElement(CardElement)
-        const result=await stripe.confirmCardPayment(clientSecret,{
-            payment_method:{
-                card:cardElement,
-                billing_details:{
-                    address:{
-                    city:locationValues.city,
-                    state:locationValues.state,
-                    line1:locationValues.street},
-                    email:detailValues.email,
-                    name:detailValues.name,
-                    phone:detailValues.phone
-                }
-            }
-        },{idempotencyKey})
+       const result="succes"
         if(result.error){
             console.error(result.error.message)
             dispatchFeedback(setSnackbar({status:'error',message:result.error.message}))
             setLoading(false)
         }else if(result.paymentIntent.status==="succeeded"){
         console.log(shipping)
-        axios.post(`${process.env.BACKEND_URL}api/orders/finalize`,{
+        axios.post(`${process.env.BACKEND_URL}/api/orders/finalize`,{
         
             shippingAddress:locationValues,
             shippingInfo:detailValues,
@@ -162,7 +149,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,ord
             const storeIntent=localStorage.getItem("intentID")
             const idempotencyKey=uuidv4()
             setClientSecret(null)
-            axios.post(`${process.env.BACKEND_URL}api/orders/process`,{
+            axios.post(`${process.env.BACKEND_URL}/api/orders/process`,{
                 items:cart,
                 total:total.toFixed(2),
                 shippingOption:shipping,

@@ -38,7 +38,7 @@ function CheckOutNavigation({steps,selectedStep,setSelectedStep,detailValues,loc
             isDetails&&(user.Contactinfo[detailSlot]=detailValues)
             isLocation&&(user.locations[locationSlot]=locationValues)
         }
-         axios.put(`${process.env.BACKEND_URL}api/users/`+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
+         axios.put(`${process.env.BACKEND_URL}/api/users/`+`${user.id}`,{'Contactinfo':user.Contactinfo,'locations':user.locations}
             ,{headers:{
             Authorization:`Bearer ${user.jwt}`,
             'Content-Type': 'application/json'

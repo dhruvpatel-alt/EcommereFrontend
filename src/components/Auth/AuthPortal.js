@@ -35,7 +35,7 @@ function AuthPortal() {
     }else if(access_token){
         axios.post('https://facebooklogin16o9.herokuapp.com/getuser',{
           access_token:access_token,
-          url:`${process.env.BACKENDURL}`
+          url:`${process.env.BACKEND_URL}`
         }
       ).then(response=>{
         dispatchUser(setUser({...response.data.user,jwt:response.data.jwt,

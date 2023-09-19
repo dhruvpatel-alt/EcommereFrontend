@@ -2,17 +2,14 @@ import React,{useState} from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {Grid,Typography,Button,FormControlLabel,Switch} from '@mui/material'
 import cardIcon from '../../images/card.svg'
-import { CardElement,useStripe,useElements } from '@stripe/react-stripe-js';
+import { CardElement } from '@stripe/react-stripe-js';
 import Slot from './Slot'
 function Payment({user,slot,setSlot,checkout,saveCard,setSaveCard,isCart,setCardError,selectedStep,stepNumber}) {
-   const stripe=useStripe()
-   const elements=useElements()
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
 
     const card={last4:"",brand:""}
     const handleSubmit=async event=>{
         event.preventDefault()
-        if(!stripe||!elements) return;
     }
     const handleCardChange=async event=>{
         if(event.complete){
