@@ -9,7 +9,7 @@ function Payment({user,slot,setSlot,checkout,saveCard,setSaveCard,isCart,setCard
    const elements=useElements()
     const matchesMd=useMediaQuery(theme=>theme.breakpoints.down('md'))
 
-    const card=user.username===''?{last4:"",brand:""}:user.Paymentmethods[slot]
+    const card={last4:"",brand:""}
     const handleSubmit=async event=>{
         event.preventDefault()
         if(!stripe||!elements) return;
