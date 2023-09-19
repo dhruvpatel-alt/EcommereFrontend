@@ -4,7 +4,7 @@ query getDetails($id:ID!){
   products(filters: {id: { eq: $id}}){
     data{
       attributes{
-	variants{
+	      variants{
           data{
             attributes{
               qty
