@@ -96,7 +96,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,ord
             setLoading(false)
         }else if(result.paymentIntent.status==="succeeded"){
         console.log(shipping)
-        axios.post(`https://ecommerce-backend-ql48.onrender.com/api/orders/finalize`,{
+        axios.post(`https://ecommerce-backend-atr1.onrender.com/api/orders/finalize`,{
         
             shippingAddress:locationValues,
             shippingInfo:detailValues,
@@ -149,7 +149,7 @@ function Confirmation({detailValues,locationValues,selectedShipping,saveCard,ord
             const storeIntent=localStorage.getItem("intentID")
             const idempotencyKey=uuidv4()
             setClientSecret(null)
-            axios.post(`https://ecommerce-backend-ql48.onrender.com/api/orders/process`,{
+            axios.post(`https://ecommerce-backend-atr1.onrender.com/api/orders/process`,{
                 items:cart,
                 total:total.toFixed(2),
                 shippingOption:shipping,

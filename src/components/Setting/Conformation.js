@@ -24,7 +24,7 @@ function Conformation({dialog,setDialog,user,dispatchFeedback,setSnackbar}) {
     }
     const handleConfirm=()=>{
             setLoading(true);
-            axios.post(`https://ecommerce-backend-ql48.onrender.com/api/auth/local`,{
+            axios.post(`https://ecommerce-backend-atr1.onrender.com/api/auth/local`,{
                 identifier:user.email,
                 password:values.password
             }).then(response=>{

@@ -52,7 +52,7 @@ const handleNavigate=direction=>{
 
 const handleComplete=()=>{
     setLoading(true)
-    axios.post(`https://ecommerce-backend-ql48.onrender.com/api/auth/local/register`,{
+    axios.post(`https://ecommerce-backend-atr1.onrender.com/api/auth/local/register`,{
         username:values.name,
         email:values.email,
         password:values.password
